@@ -1,0 +1,34 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class Toas {
+  static getSnackbarsucess(String title, String text) {
+    return Get.snackbar(
+      title,
+      text,
+      icon: Icon(Icons.check_circle_outlined, color: Colors.white),
+      backgroundColor: Colors.green,
+      colorText: Colors.white,
+      snackStyle: SnackStyle.FLOATING,
+      borderRadius: 4,
+      snackPosition: SnackPosition.TOP,
+      padding: EdgeInsets.all(8.0),
+      margin: EdgeInsets.all(10.0),
+    );
+  }
+
+  static getSnackbarEror(String title, String text) {
+    return Get.snackbar(
+      title,
+      text,
+      icon: Icon(Icons.cancel_rounded, color: Colors.white),
+      backgroundColor: Colors.red,
+      colorText: Colors.white,
+      snackStyle: SnackStyle.FLOATING,
+      borderRadius: 4,
+      snackPosition: SnackPosition.TOP,
+      padding: EdgeInsets.all(8.0),
+      margin: EdgeInsets.all(10.0),
+    );
+  }
+}

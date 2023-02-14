@@ -28,6 +28,8 @@ class Cards extends ConsumerStatefulWidget {
 }
 
 class _CardsState extends ConsumerState<Cards> {
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+      GlobalKey<RefreshIndicatorState>();
   List<Transaction> transactions = [];
   @override
   void initState() {
@@ -39,7 +41,7 @@ class _CardsState extends ConsumerState<Cards> {
   loader() async {
     await Service.getservice();
 
-    transactions = await TransactionService.getcarttransactions();
+    transactions = await TransactionService.getalltransaction();
     setState(() {});
   }
 
@@ -50,7 +52,8 @@ class _CardsState extends ConsumerState<Cards> {
         actions: [
           IconButton(
               onPressed: () async {
-                await TransactionService.getcarttransactions();
+                await TransactionService.getalltransaction();
+                _refreshIndicatorKey.currentState?.show();
               },
               icon: Icon(
                 Icons.refresh,
@@ -154,129 +157,219 @@ class _CardsState extends ConsumerState<Cards> {
         ),
       ),
       body: SafeArea(
-        child: Column(
-          children: [
-            FlipCard(
-              fill: Fill
-                  .fillBack, // Fill the back side of the card to make in the same size as the front.
-              direction: FlipDirection.HORIZONTAL, // default
-              side: CardSide.FRONT, // The side to initially display.
-              front: Container(
-                child: Center(
-                    child: Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: Card(
-                    color: AppColors.mainColor,
-                    elevation: 3,
-                    child: Container(
-                      height: Get.height * 0.25,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Free Pay",
-                                  style:
-                                      StyleText.copyWith(color: Colors.white),
-                                ),
-                                Text(
-                                  "${company}",
-                                  style:
-                                      StyleText.copyWith(color: Colors.white),
-                                )
-                              ],
+        child: RefreshIndicator(
+          key: _refreshIndicatorKey,
+          color: Colors.white,
+          backgroundColor: Colors.blue,
+          strokeWidth: 4.0,
+          onRefresh: () async {
+            await TransactionService.getalltransaction();
+
+            return Future<void>.delayed(const Duration(seconds: 3));
+          },
+          child: Column(
+            children: [
+              FlipCard(
+                fill: Fill
+                    .fillBack, // Fill the back side of the card to make in the same size as the front.
+                direction: FlipDirection.HORIZONTAL, // default
+                side: CardSide.FRONT, // The side to initially display.
+                front: Container(
+                  child: Center(
+                      child: Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Card(
+                      color: AppColors.mainColor,
+                      elevation: 3,
+                      child: Container(
+                        height: Get.height * 0.25,
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Free Pay",
+                                    style:
+                                        StyleText.copyWith(color: Colors.white),
+                                  ),
+                                  Text(
+                                    "${company}",
+                                    style:
+                                        StyleText.copyWith(color: Colors.white),
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Image.asset(sim),
-                                Text(
-                                  "Free Pay",
-                                  style:
-                                      StyleText.copyWith(color: Colors.white),
-                                ),
-                              ],
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Image.asset(sim),
+                                  Text(
+                                    "Free Pay",
+                                    style:
+                                        StyleText.copyWith(color: Colors.white),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          // SizedBox(
-                          //   height: Get.height * 0.1,
-                          // ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                Text(
-                                  "${Cartes.code}",
-                                  style: StyleText.copyWith(
-                                      color: Colors.white, letterSpacing: 3.0),
-                                ),
-                              ],
+                            // SizedBox(
+                            //   height: Get.height * 0.1,
+                            // ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    "${Cartes.code}",
+                                    style: StyleText.copyWith(
+                                        color: Colors.white,
+                                        letterSpacing: 3.0),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "${namecostumer}",
-                                  style:
-                                      StyleText.copyWith(color: Colors.white),
-                                ),
-                                Text(
-                                  "${Cartes.created} ",
-                                  style:
-                                      StyleText.copyWith(color: Colors.white),
-                                )
-                              ],
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "${namecostumer}",
+                                    style:
+                                        StyleText.copyWith(color: Colors.white),
+                                  ),
+                                  Text(
+                                    "${Cartes.created} ",
+                                    style:
+                                        StyleText.copyWith(color: Colors.white),
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                )),
-              ),
-              back: Container(
-                child: Center(
-                    child: Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: Card(
-                    color: AppColors.mainColor,
-                    elevation: 3,
-                    child: Container(
-                      height: Get.height * 0.25,
-                      width: Get.width,
-                      child: QrImage(
-                        foregroundColor: Colors.white,
-                        data: Cartes.code.toString(),
-                        version: QrVersions.auto,
-                        size: 250,
-                        gapless: false,
+                  )),
+                ),
+                back: Container(
+                  child: Center(
+                      child: Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Card(
+                      color: AppColors.mainColor,
+                      elevation: 3,
+                      child: Container(
+                        height: Get.height * 0.25,
+                        width: Get.width,
+                        child: QrImage(
+                          foregroundColor: Colors.white,
+                          data: Cartes.code.toString(),
+                          version: QrVersions.auto,
+                          size: 250,
+                          gapless: false,
+                        ),
                       ),
                     ),
-                  ),
-                )),
+                  )),
+                ),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Column(
-                  children: [
-                    // ignore: sized_box_for_whitespace
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
-                      child: InkWell(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+                      // ignore: sized_box_for_whitespace
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: InkWell(
+                          onTap: () {
+                            Get.to(() => DetailCard(),
+                                transition: Transition.fade);
+                          },
+                          child: Container(
+                            height: 50,
+                            // color: AppColors.,
+                            width: 50,
+                            child: Icon(
+                              Icons.credit_card,
+                              size: 50,
+                              color: AppColors.mainColor,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Text("Détail", style: StyleText.copyWith(fontSize: 13))
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      InkWell(
                         onTap: () {
-                          Get.to(() => DetailCard(),
+                          // Get.to(() => Montants(), transition: Transition.fade);
+                        },
+                        child: Container(
+                          height: 50,
+                          // color: AppColors.mainColor,
+                          width: 50,
+                          child: Icon(
+                            Icons.money,
+                            size: 50,
+                            color: AppColors.mainColor,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        "Montant",
+                        style: StyleText.copyWith(fontSize: 13),
+                      )
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Get.to(() => Transactionlist(),
+                              transition: Transition.fade);
+                        },
+                        child: Container(
+                          height: 50,
+                          // color: AppColors.mainColor,
+                          width: 50,
+                          child: Icon(
+                            Icons.history,
+                            size: 50,
+                            color: AppColors.mainColor,
+                          ),
+                        ),
+                      ),
+                      Text("Transaction",
+                          style: StyleText.copyWith(fontSize: 13))
+                    ],
+                  )
+                ],
+              ),
+              SizedBox(
+                height: Get.height * 0.03,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Get.to(() => TransfertList(),
                               transition: Transition.fade);
                         },
                         child: Container(
@@ -284,180 +377,106 @@ class _CardsState extends ConsumerState<Cards> {
                           // color: AppColors.,
                           width: 50,
                           child: Icon(
-                            Icons.credit_card,
+                            Icons.outbound_outlined,
                             size: 50,
                             color: AppColors.mainColor,
                           ),
                         ),
                       ),
-                    ),
-                    Text("Détail", style: StyleText.copyWith(fontSize: 13))
-                  ],
-                ),
-                Column(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        // Get.to(() => Montants(), transition: Transition.fade);
-                      },
-                      child: Container(
+                      Text("Transfert", style: StyleText.copyWith(fontSize: 13))
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Get.to(() => History(), transition: Transition.fade);
+                        },
+                        child: Container(
+                          height: 50,
+                          // color: AppColors.mainColor,
+                          width: 50,
+                          child: Icon(
+                            Icons.history_toggle_off,
+                            size: 50,
+                            color: AppColors.mainColor,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        "Historique",
+                        style: StyleText.copyWith(fontSize: 13),
+                      )
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Container(
                         height: 50,
                         // color: AppColors.mainColor,
                         width: 50,
                         child: Icon(
-                          Icons.money,
+                          Icons.person,
                           size: 50,
                           color: AppColors.mainColor,
                         ),
                       ),
-                    ),
-                    Text(
-                      "Montant",
-                      style: StyleText.copyWith(fontSize: 13),
-                    )
-                  ],
-                ),
-                Column(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Get.to(() => Transactionlist(),
-                            transition: Transition.fade);
-                      },
-                      child: Container(
-                        height: 50,
-                        // color: AppColors.mainColor,
-                        width: 50,
-                        child: Icon(
-                          Icons.history,
-                          size: 50,
-                          color: AppColors.mainColor,
-                        ),
-                      ),
-                    ),
-                    Text("Transaction", style: StyleText.copyWith(fontSize: 13))
-                  ],
-                )
-              ],
-            ),
-            SizedBox(
-              height: Get.height * 0.03,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Column(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Get.to(() => TransfertList(),
-                            transition: Transition.fade);
-                      },
-                      child: Container(
-                        height: 50,
-                        // color: AppColors.,
-                        width: 50,
-                        child: Icon(
-                          Icons.outbound_outlined,
-                          size: 50,
-                          color: AppColors.mainColor,
-                        ),
-                      ),
-                    ),
-                    Text("Transfert", style: StyleText.copyWith(fontSize: 13))
-                  ],
-                ),
-                Column(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Get.to(() => History(), transition: Transition.fade);
-                      },
-                      child: Container(
-                        height: 50,
-                        // color: AppColors.mainColor,
-                        width: 50,
-                        child: Icon(
-                          Icons.history_toggle_off,
-                          size: 50,
-                          color: AppColors.mainColor,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      "Historique",
-                      style: StyleText.copyWith(fontSize: 13),
-                    )
-                  ],
-                ),
-                Column(
-                  children: [
-                    Container(
-                      height: 50,
-                      // color: AppColors.mainColor,
-                      width: 50,
-                      child: Icon(
-                        Icons.person,
-                        size: 50,
-                        color: AppColors.mainColor,
-                      ),
-                    ),
-                    Text("Compte", style: StyleText.copyWith(fontSize: 13))
-                  ],
-                ),
-              ],
-            ),
-            Expanded(
-              child: DraggableScrollableSheet(
-                initialChildSize: 0.8,
-                minChildSize: 0.3,
-                maxChildSize: 0.8,
-                builder: (context, scrollController) {
-                  return Container(
-                    margin: EdgeInsets.only(left: 0, right: 0),
-                    decoration: BoxDecoration(
-                        color: AppColors.mainColor,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20))),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: Get.width * 0.03,
-                                  top: Get.height * 0.006),
-                              child: Text(
-                                transactions.length > 0
-                                    ? "Transactions recent  ${transactions.length}  "
-                                    : "Transactions recent (0)",
-                                style: StyleText.copyWith(
-                                    fontSize: 15, color: Colors.white),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Expanded(
-                          child: ListView.builder(
-                              itemCount: transactions.length,
-                              shrinkWrap: true,
-                              controller: scrollController,
-                              itemBuilder: (context, index) => Padding(
-                                    padding: EdgeInsets.all(10.0),
-                                    child: CardTransaction(
-                                      transaction: transactions[index],
-                                    ),
-                                  )),
-                        ),
-                      ],
-                    ),
-                  );
-                },
+                      Text("Compte", style: StyleText.copyWith(fontSize: 13))
+                    ],
+                  ),
+                ],
               ),
-            ),
-          ],
+              Expanded(
+                child: DraggableScrollableSheet(
+                  initialChildSize: 0.8,
+                  minChildSize: 0.3,
+                  maxChildSize: 0.8,
+                  builder: (context, scrollController) {
+                    return Container(
+                      margin: EdgeInsets.only(left: 0, right: 0),
+                      decoration: BoxDecoration(
+                          color: AppColors.mainColor,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20))),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    left: Get.width * 0.03,
+                                    top: Get.height * 0.006),
+                                child: Text(
+                                  transactions.length > 0
+                                      ? "Transactions recent  ${transactions.length}  "
+                                      : "Transactions recent (0)",
+                                  style: StyleText.copyWith(
+                                      fontSize: 15, color: Colors.white),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Expanded(
+                            child: ListView.builder(
+                                itemCount: transactions.length,
+                                shrinkWrap: true,
+                                controller: scrollController,
+                                itemBuilder: (context, index) => Padding(
+                                      padding: EdgeInsets.all(10.0),
+                                      child: CardTransaction(
+                                        transaction: transactions[index],
+                                      ),
+                                    )),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

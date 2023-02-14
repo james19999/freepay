@@ -37,21 +37,21 @@ class _HistoryTransactionState extends ConsumerState<HistoryTransaction> {
 
     try {
       today = transactions
-          .where((e) => e.status == 1)
+          .where((e) => e.status == 'success')
           .map((e) => e.amount)
           .reduce((x, y) => x + y);
     } catch (e) {}
 
     try {
       week = transactionsweek
-          .where((e) => e.status == 1)
+          .where((e) => e.status == 'success')
           .map((e) => e.amount)
           .reduce((x, y) => x + y);
     } catch (e) {}
 
     try {
       month = transactionsmonth
-          .where((e) => e.status == 1)
+          .where((e) => e.status == 'success')
           .map((e) => e.amount)
           .reduce((x, y) => x + y);
     } catch (e) {}

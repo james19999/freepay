@@ -13,6 +13,7 @@ class Transaction {
     this.amount,
     this.cartcode,
     this.status,
+    this.code_tansaction,
   });
 
   dynamic id;
@@ -20,6 +21,7 @@ class Transaction {
   dynamic created;
   dynamic amount;
   dynamic cartcode;
+  dynamic code_tansaction;
   dynamic status;
 
   factory Transaction.fromRawJson(String str) =>
@@ -34,6 +36,7 @@ class Transaction {
         amount: json["amount"],
         cartcode: json["cartcode"],
         status: json["status"],
+        code_tansaction: json["code_tansaction"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -44,5 +47,6 @@ class Transaction {
         "amount": amount,
         "cartcode": cartcode,
         "status": status,
+        "status": code_tansaction,
       };
 }

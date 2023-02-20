@@ -11,7 +11,7 @@ class Toas {
       colorText: Colors.white,
       snackStyle: SnackStyle.FLOATING,
       borderRadius: 4,
-      snackPosition: SnackPosition.TOP,
+      snackPosition: SnackPosition.BOTTOM,
       padding: EdgeInsets.all(8.0),
       margin: EdgeInsets.all(10.0),
     );

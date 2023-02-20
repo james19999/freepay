@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 
 class TransactionService {
   //getauthcarttransaction by today
-  static Future<dynamic> getcarttransactions() async {
+  static Future<List<Transaction>> getcarttransactions() async {
     var url =
         Uri.parse("${BaseUrl}getauthcarttransaction/${localstorage.cartecode}");
     final response = await http.get(url, headers: {
@@ -34,6 +34,7 @@ class TransactionService {
     });
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body)['transaction'];
+
       return List<Transaction>.from(
           result.map((Servi) => Transaction.fromJson(Servi)));
     } else {
@@ -88,6 +89,31 @@ class TransactionService {
       } else {
         Toas.getSnackbarEror("App Name", result['message']);
       }
+    } else {
+      throw Exception('fail to loader');
+    }
+  }
+
+  //Add a new transaction
+
+  static newTransaction(Transaction transaction) async {
+    var url = Uri.parse("${BaseUrl}new/transaction");
+
+    var data = {
+      "title": transaction.title.toString(),
+      "amount": transaction.amount.toString(),
+      "code_tansaction": transaction.code_tansaction.toString(),
+    };
+    final response = await http.post(url,
+        headers: {'Authorization': "Bearer ${localstorage.token}"}, body: data);
+    if (response.statusCode == 200) {
+      var result = jsonDecode(response.body);
+      if (result['status'] == true) {
+        return true;
+      }
+      // else {
+      //   Toas.getSnackbarEror("App Name", result['message']);
+      // }
     } else {
       throw Exception('fail to loader');
     }

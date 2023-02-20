@@ -1,12 +1,15 @@
+import 'package:digitalbank/controllers/transaction_controller.dart';
 import 'package:digitalbank/helper/date_convert.dart';
 import 'package:digitalbank/models/transaction.dart';
 import 'package:digitalbank/pages/colors/color.dart';
 import 'package:digitalbank/pages/styles/style.dart';
+import 'package:digitalbank/pages/transactions/transaction_detail.dart';
 import 'package:digitalbank/services/transaction_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 
-class CardTransaction extends StatelessWidget {
+class CardTransaction extends ConsumerWidget {
   final Transaction transaction;
   const CardTransaction({
     super.key,
@@ -14,23 +17,27 @@ class CardTransaction extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final data = ref.watch(GlobalProviders);
     return InkWell(
       onTap: () {
-        Get.defaultDialog(
-          title: "Annuler la transaction ${transaction.code_tansaction}",
-          middleText: "",
-          onCancel: () {},
-          onConfirm: () {
-            TransactionService.canceledtransaction(transaction.code_tansaction);
-          },
-          radius: 10,
-          textCancel: "Non",
-          textConfirm: "Oui",
-          confirmTextColor: Colors.white,
-          cancelTextColor: AppColors.mainColor,
-          buttonColor: AppColors.mainColor,
-        );
+        Get.to(() => DetailTransaction(transactions: transaction),
+            transition: Transition.fade);
+        // Get.defaultDialog(
+        //   title: "Annuler la transaction ${transaction.code_tansaction}",
+        //   middleText: "",
+        //   onConfirm: () async {
+        //     await data.canceledtransaction(transaction.code_tansaction);
+        //     data.getcarttransaction();
+        //   },
+        //   onCancel: () {},
+        //   radius: 10,
+        //   textCancel: "Non",
+        //   textConfirm: "Oui",
+        //   confirmTextColor: Colors.white,
+        //   cancelTextColor: AppColors.mainColor,
+        //   buttonColor: AppColors.mainColor,
+        // );
       },
       child: Container(
         child: Card(
@@ -55,8 +62,17 @@ class CardTransaction extends StatelessWidget {
               children: [
                 Text(DateConverter.estimatedDate(transaction.created)),
                 Text(
-                  "${transaction.amount} fcfa",
-                  style: StyleText.copyWith(color: AppColors.mainColor),
+                  "${transaction.amount} F",
+                  style: StyleText.copyWith(
+                    fontSize: 14,
+                    // color: transaction.status == 'pending'
+                    //     ? Colors.orange
+                    //     : transaction.status == 'success'
+                    //         ? Colors.green
+                    //         : transaction.status == 'cancelled'
+                    //             ? Colors.red
+                    //             : Colors.transparent,
+                  ),
                 )
               ],
             ),

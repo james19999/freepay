@@ -32,6 +32,21 @@ class UserCostumerController extends ChangeNotifier {
       }
     }
   }
+
+  LogoutUser() async {
+    var url = Uri.parse("${BaseUrl}logout/user");
+    final response = await http
+        .post(url, headers: {"Authorization": "Bearer ${localstorage.token}"});
+
+    if (response.statusCode == 200) {
+      var result = json.decode(response.body);
+      if (result['status'] == true) {
+        localstorage.deletetoken;
+        localstorage.deletename;
+        return true;
+      }
+    }
+  }
 }
 
 final AuthProviders = ChangeNotifierProvider<UserCostumerController>(

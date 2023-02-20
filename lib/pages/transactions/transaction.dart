@@ -4,6 +4,7 @@ import 'package:digitalbank/pages/transactions/widget_card.dart';
 import 'package:digitalbank/services/transaction_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class Transactionlist extends ConsumerStatefulWidget {
   const Transactionlist({super.key});
@@ -39,13 +40,23 @@ class _TransactionlistState extends ConsumerState<Transactionlist> {
                 child: ListView.builder(
                     itemCount: transactions.length,
                     shrinkWrap: true,
-                    itemBuilder: (context, index) => Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: CardTransaction(
-                            transaction: transactions[index],
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: AnimationConfiguration.staggeredList(
+                          position: index,
+                          duration: const Duration(milliseconds: 375),
+                          child: SlideAnimation(
+                            verticalOffset: 50.0,
+                            child: FadeInAnimation(
+                              child: CardTransaction(
+                                transaction: transactions[index],
+                              ),
+                            ),
                           ),
-                        )),
-              )
+                        ),
+                      );
+                    }))
             : Center(
                 child: CircularProgressIndicator(
                 strokeWidth: 1,

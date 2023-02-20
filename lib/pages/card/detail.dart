@@ -1,7 +1,10 @@
+import 'package:digitalbank/helper/images.dart';
 import 'package:digitalbank/pages/styles/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
+
+import '../../models/cart_data.dart';
 
 class DetailCard extends ConsumerStatefulWidget {
   const DetailCard({super.key});
@@ -32,14 +35,17 @@ class _DetailCardState extends ConsumerState<DetailCard> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        "50000000 FCFA ",
-                        style: StyleText,
+                      Image.asset(
+                        found,
+                        height: 50,
                       ),
                       SizedBox(
                         height: Get.height * 0.02,
                       ),
-                      Text("Solde actul"),
+                      Text(
+                        "${Cartes.amount} F",
+                        style: StyleText,
+                      ),
                     ],
                   )),
             ),
@@ -53,7 +59,47 @@ class _DetailCardState extends ConsumerState<DetailCard> {
                   style: StyleText.copyWith(fontSize: 18),
                 ),
               ],
-            )
+            ),
+            ExpansionTile(
+              title: Text("Nom"),
+              children: [
+                Row(
+                  children: [
+                    Text(namecostumer),
+                  ],
+                )
+              ],
+            ),
+            ExpansionTile(
+              title: Text("Nom"),
+              children: [
+                Row(
+                  children: [
+                    Text(namecostumer),
+                  ],
+                )
+              ],
+            ),
+            ExpansionTile(
+              title: Text("Nom"),
+              children: [
+                Row(
+                  children: [
+                    Text(namecostumer),
+                  ],
+                )
+              ],
+            ),
+            ExpansionTile(
+              title: Text("Nom"),
+              children: [
+                Row(
+                  children: [
+                    Text(namecostumer),
+                  ],
+                )
+              ],
+            ),
           ]),
         ),
       )),

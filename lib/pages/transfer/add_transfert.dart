@@ -1,27 +1,37 @@
 import 'dart:math';
 
+import 'package:digitalbank/controllers/transaction_controller.dart';
 import 'package:digitalbank/helper/images.dart';
+import 'package:digitalbank/models/transaction.dart';
 import 'package:digitalbank/pages/colors/color.dart';
 import 'package:digitalbank/pages/styles/style.dart';
+import 'package:digitalbank/pages/toas/toas.dart';
+import 'package:digitalbank/pages/transfer/detail_transfert.dart';
+import 'package:digitalbank/services/transaction_service.dart';
+import 'package:digitalbank/urls/baseurl.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-class AddTransfert extends StatefulWidget {
+class AddTransfert extends ConsumerStatefulWidget {
   const AddTransfert({super.key});
 
   @override
-  State<AddTransfert> createState() => _AddTransfertState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _AddTransfertState();
 }
 
-class _AddTransfertState extends State<AddTransfert> {
+class _AddTransfertState extends ConsumerState<AddTransfert> {
   GlobalKey<FormState> _formk = GlobalKey<FormState>();
 
   TextEditingController _libelle = TextEditingController();
   TextEditingController _amount = TextEditingController();
   String number = Random().nextInt(999999).toString().padLeft(6, '0');
+  bool isloded = false;
   @override
   Widget build(BuildContext context) {
+    final data = ref.watch(GlobalProviders);
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Transfert"),
@@ -52,15 +62,43 @@ class _AddTransfertState extends State<AddTransfert> {
                   color: AppColors.mainColor,
                   borderRadius: BorderRadius.circular(5)),
               child: TextButton.icon(
-                  onPressed: () {
-                    if (_formk.currentState!.validate()) {}
+                  onPressed: () async {
+                    if (_formk.currentState!.validate()) {
+                      var confirm = await TransactionService.newTransaction(
+                          Transaction(
+                              amount: _amount.text,
+                              title: _libelle.text,
+                              code_tansaction: number));
+                      if (confirm == true) {
+                        Get.offAll(() => DetailTransfert(
+                              transaction: Transaction(
+                                  amount: _amount.text,
+                                  title: _libelle.text,
+                                  code_tansaction: number),
+                            ));
+                        setState(() {
+                          isloded = true;
+                        });
+                        data.getcarttransaction();
+                        Toas.getSnackbarsucess(
+                            appName, "Transaction effecftué");
+                      } else {
+                        Toas.getSnackbarEror(
+                            appName, "Entrer un montant valide");
+                      }
+                    }
                   },
-                  icon: Icon(
-                    Icons.outbound_outlined,
-                    color: Colors.white,
-                  ),
+                  icon: isloded == false
+                      ? Icon(
+                          Icons.outbound_outlined,
+                          color: Colors.white,
+                        )
+                      : CircularProgressIndicator(
+                          backgroundColor: Colors.white,
+                          strokeWidth: 2,
+                        ),
                   label: Text(
-                    "Envoyer",
+                    "Envoyer ",
                     style: StyleText.copyWith(color: Colors.white),
                   )),
             ),
@@ -83,13 +121,14 @@ class _AddTransfertState extends State<AddTransfert> {
                                   : null,
                               decoration: InputDecoration(
                                   label: Text("Libelle"),
+                                  suffixIcon: Icon(Icons.note_alt),
                                   isDense: true,
                                   filled: true,
                                   enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(5.0),
                                       borderSide: BorderSide(
                                         color: AppColors.mainColor,
-                                        width: 1.0,
+                                        width: 0.0,
                                       )),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide:
@@ -104,19 +143,23 @@ class _AddTransfertState extends State<AddTransfert> {
                               height: Get.height * 0.04,
                             ),
                             TextFormField(
+                              keyboardType: TextInputType.number,
                               controller: _amount,
                               validator: (value) => value!.isEmpty
                                   ? "Le montant du transfert"
                                   : null,
                               decoration: InputDecoration(
                                   label: Text("Montant"),
+                                  hintText: "Ex:10000",
+                                  suffixIcon:
+                                      Icon(Icons.monetization_on_outlined),
                                   isDense: true,
                                   filled: true,
                                   enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(5.0),
                                       borderSide: BorderSide(
                                         color: AppColors.mainColor,
-                                        width: 1.0,
+                                        width: 0.0,
                                       )),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide:
@@ -130,14 +173,16 @@ class _AddTransfertState extends State<AddTransfert> {
                             SizedBox(
                               height: Get.height * 0.1,
                             ),
-                            QrImage(
-                              data: number,
-                              version: QrVersions.auto,
-                              size: 250,
-                              gapless: false,
-                              embeddedImage: AssetImage(logo),
-                              embeddedImageStyle: QrEmbeddedImageStyle(
-                                size: Size(80, 80),
+                            Card(
+                              child: QrImage(
+                                data: number,
+                                version: QrVersions.auto,
+                                size: 250,
+                                gapless: false,
+                                embeddedImage: AssetImage(logo),
+                                embeddedImageStyle: QrEmbeddedImageStyle(
+                                  size: Size(80, 80),
+                                ),
                               ),
                             ),
                             Text(number),

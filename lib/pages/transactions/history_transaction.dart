@@ -6,6 +6,7 @@ import 'package:digitalbank/pages/transactions/widget_card.dart';
 import 'package:digitalbank/services/transaction_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 
 class HistoryTransaction extends ConsumerStatefulWidget {
@@ -117,7 +118,7 @@ class _HistoryTransactionState extends ConsumerState<HistoryTransaction> {
                           strokeWidth: 1,
                           color: AppColors.mainColor,
                         ))
-                      : Text("Vous n'avez pas effectue des transactions ."),
+                      : Text("aucune transaction n'a été effectuée."),
             ]),
             Column(children: [
               Expanded(
@@ -134,16 +135,26 @@ class _HistoryTransactionState extends ConsumerState<HistoryTransaction> {
             ]),
             Column(children: [
               Expanded(
-                child: ListView.builder(
-                    itemCount: transactionsmonth.length,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) => Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: CardTransaction(
-                            transaction: transactionsmonth[index],
+                  child: ListView.builder(
+                      itemCount: transactionsmonth.length,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: AnimationConfiguration.staggeredList(
+                            position: index,
+                            duration: const Duration(milliseconds: 375),
+                            child: SlideAnimation(
+                              verticalOffset: 50.0,
+                              child: FadeInAnimation(
+                                child: CardTransaction(
+                                  transaction: transactionsmonth[index],
+                                ),
+                              ),
+                            ),
                           ),
-                        )),
-              ),
+                        );
+                      })),
             ]),
             Padding(
               padding: EdgeInsets.only(top: Get.height * 0.02),

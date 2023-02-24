@@ -13,7 +13,10 @@ import 'package:digitalbank/pages/company/company_list.dart';
 import 'package:digitalbank/pages/historiques/history.dart';
 import 'package:digitalbank/pages/styles/style.dart';
 import 'package:digitalbank/pages/toas/toas.dart';
+import 'package:digitalbank/pages/transactions/canceld_list.dart';
 import 'package:digitalbank/pages/transactions/history_transaction.dart';
+import 'package:digitalbank/pages/transactions/peding_list.dart';
+import 'package:digitalbank/pages/transactions/succes_list.dart';
 import 'package:digitalbank/pages/transactions/transaction.dart';
 import 'package:digitalbank/pages/transactions/widget_card.dart';
 import 'package:digitalbank/pages/transfer/add_transfert.dart';
@@ -67,17 +70,17 @@ class _CardsState extends ConsumerState<Cards> {
             actions: [
               // IconButton(
               //     onPressed: () {
-
+              //       Get.to(() => CompanyList(), transition: Transition.fade);
               //     },
               //     icon: Icon(
-              //       Icons.refresh,
-              //       size: 30,
+              //       Icons.remove_red_eye_sharp,
+              //       color: Colors.white,
               //     ))
             ],
             elevation: 0,
-            title: Text(
-              "Free Pay",
-              style: StyleText.copyWith(fontSize: 25),
+            title: Image.asset(
+              logo,
+              height: 70,
             ),
             centerTitle: true,
           ),
@@ -100,7 +103,7 @@ class _CardsState extends ConsumerState<Cards> {
                             height: 80,
                             child: ClipOval(
                                 child: Image.asset(
-                              "assets/images/logo.jpeg",
+                              logo,
                               fit: BoxFit.cover,
                             ))),
                       ),
@@ -262,8 +265,8 @@ class _CardsState extends ConsumerState<Cards> {
                                                       ),
                                                 Text(
                                                   Cartes.status == 1
-                                                      ? "Activer"
-                                                      : "Désactiver",
+                                                      ? "Activé"
+                                                      : "Désactivé",
                                                   style: StyleText.copyWith(
                                                       color: Colors.white,
                                                       fontSize: 13),
@@ -293,6 +296,9 @@ class _CardsState extends ConsumerState<Cards> {
                                         ),
                                       ],
                                     ),
+                                  ),
+                                  SizedBox(
+                                    height: Get.height * 0.01,
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
@@ -357,29 +363,34 @@ class _CardsState extends ConsumerState<Cards> {
                             children: [
                               // ignore: sized_box_for_whitespace
                               InkWell(
-                                onTap: () {},
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(5)),
-                                  height: ResponsiveHelper.isMobile(context)
-                                      ? Get.height * 0.1
-                                      : ResponsiveHelper.isLandscape(context)
-                                          ? Get.height * 0.2
-                                          : Get.height * 0.1,
-                                  width: 90,
-                                  child: Column(
-                                    children: [
-                                      Icon(
-                                        Icons.cancel_outlined,
-                                        size: 50,
-                                        color: Colors.red,
-                                      ),
-                                      Text(
-                                          "Annuler ${GlobalProvider.cancelde == null ? 0 : GlobalProvider.cancelde.length}",
-                                          style:
-                                              StyleText.copyWith(fontSize: 13))
-                                    ],
+                                onTap: () {
+                                  Get.to(() => CanceldList(),
+                                      transition: Transition.fade);
+                                },
+                                child: ZoomTapAnimation(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(5)),
+                                    height: ResponsiveHelper.isMobile(context)
+                                        ? Get.height * 0.1
+                                        : ResponsiveHelper.isLandscape(context)
+                                            ? Get.height * 0.2
+                                            : Get.height * 0.1,
+                                    width: 90,
+                                    child: Column(
+                                      children: [
+                                        Icon(
+                                          Icons.cancel_outlined,
+                                          size: 50,
+                                          color: Colors.red,
+                                        ),
+                                        Text(
+                                            "Annuler ${GlobalProvider.cancelde == null ? 0 : GlobalProvider.cancelde.length}",
+                                            style: StyleText.copyWith(
+                                                fontSize: 13))
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -390,6 +401,8 @@ class _CardsState extends ConsumerState<Cards> {
                               InkWell(
                                 onTap: () {
                                   // Get.to(() => Montants(), transition: Transition.fade);
+                                  Get.to(() => PadingList(),
+                                      transition: Transition.fade);
                                 },
                                 child: ZoomTapAnimation(
                                   child: Container(
@@ -423,29 +436,35 @@ class _CardsState extends ConsumerState<Cards> {
                           ),
                           Column(
                             children: [
-                              ZoomTapAnimation(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(5)),
-                                  height: ResponsiveHelper.isMobile(context)
-                                      ? Get.height * 0.1
-                                      : ResponsiveHelper.isLandscape(context)
-                                          ? Get.height * 0.2
-                                          : Get.height * 0.1,
-                                  width: 90,
-                                  child: Column(
-                                    children: [
-                                      Icon(
-                                        Icons.check_circle_outline,
-                                        size: 50,
-                                        color: Colors.green,
-                                      ),
-                                      Text(
-                                          "Valider ${GlobalProvider.success == null ? 0 : GlobalProvider.success.length} ",
-                                          style:
-                                              StyleText.copyWith(fontSize: 13))
-                                    ],
+                              InkWell(
+                                onTap: () {
+                                  Get.to(() => SuccesList(),
+                                      transition: Transition.fade);
+                                },
+                                child: ZoomTapAnimation(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(5)),
+                                    height: ResponsiveHelper.isMobile(context)
+                                        ? Get.height * 0.1
+                                        : ResponsiveHelper.isLandscape(context)
+                                            ? Get.height * 0.2
+                                            : Get.height * 0.1,
+                                    width: 90,
+                                    child: Column(
+                                      children: [
+                                        Icon(
+                                          Icons.check_circle_outline,
+                                          size: 50,
+                                          color: Colors.green,
+                                        ),
+                                        Text(
+                                            "Valider ${GlobalProvider.success == null ? 0 : GlobalProvider.success.length} ",
+                                            style: StyleText.copyWith(
+                                                fontSize: 13))
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),

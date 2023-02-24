@@ -1,8 +1,9 @@
 import 'dart:convert';
 
-import 'package:digitalbank/models/company.dart';
+import 'package:digitalbank/models/company/company.dart';
 import 'package:digitalbank/pages/toas/toas.dart';
 import 'package:digitalbank/urls/baseurl.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class CompanyService {
@@ -20,34 +21,52 @@ class CompanyService {
     }
   }
 
-  static CreatCompay(Company company) async {
-    var data = {
-      "name": company.name,
-      "phone": company.phone,
-      "adress": company.adress,
-      "email": company.email,
-      "raison": company.raison,
-      "domaine ": company.domaine,
-      "password": company.password,
-      "quartier": company.quartier,
+  static Future<bool> CreatCompay(
+      Map<String, String> body, String filepath) async {
+    String addimageUrl = "${BaseUrl}createcompany";
+    Map<String, String> headers = {
+      'Content-Type': 'multipart/form-data',
     };
-    var url = Uri.parse("${BaseUrl}createcompany");
-    final response = await http.post(
-      url,
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: data,
-    );
+    var request = http.MultipartRequest('POST', Uri.parse(addimageUrl))
+      ..fields.addAll(body)
+      ..headers.addAll(headers)
+      ..files.add(await http.MultipartFile.fromPath('img', filepath));
+    var response = await request.send();
     if (response.statusCode == 200) {
-      var result = jsonDecode(response.body);
-      if (result['status'] == true) {
-        Toas.getSnackbarsucess(appName, result['message']);
-      } else {
-        Toas.getSnackbarEror(appName, result['message']);
-      }
+      return true;
     } else {
-      throw Exception('fail to loader');
+      return false;
     }
   }
+
+  // static CreatCompay(Company company) async {
+  //   var data = {
+  //     "name": company.name.toString(),
+  //     "img": company.img.toString(),
+  //     "phone": company.phone.toString(),
+  //     "adress": company.adress.toString(),
+  //     "email": company.email.toString(),
+  //     "raison": company.raison.toString(),
+  //     "description": company.description,
+  //     "password": company.password.toString(),
+  //     "quartier": company.quartier.toString(),
+  //   };
+  //   print(data);
+  //   var url = Uri.parse("${BaseUrl}createcompany");
+  //   final response = await http.post(
+  //     url,
+  //     body: data,
+  //   );
+  //   if (response.statusCode == 200) {
+  //     var result = jsonDecode(response.body);
+  //     if (result['status'] == true) {
+  //       Toas.getSnackbarsucess(appName, result['message']);
+  //       return true;
+  //     } else {
+  //       Toas.getSnackbarEror(appName, result['message']);
+  //     }
+  //   } else {
+  //     throw Exception('fail to loader');
+  //   }
+  // }
 }

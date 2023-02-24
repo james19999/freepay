@@ -98,7 +98,7 @@ class DetailTransaction extends ConsumerWidget {
                       version: QrVersions.auto,
                       size: 160,
                       gapless: false,
-                      embeddedImage: AssetImage(logo),
+                      embeddedImage: AssetImage(logos),
                       embeddedImageStyle: QrEmbeddedImageStyle(
                         size: Size(30, 30),
                       ),

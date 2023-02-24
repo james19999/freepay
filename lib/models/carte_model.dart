@@ -59,7 +59,7 @@ class Company {
     required this.adress,
     required this.email,
     required this.raison,
-    required this.domaine,
+    // required this.domaine,
     required this.password,
     required this.quartier,
     required this.status,
@@ -73,7 +73,7 @@ class Company {
   String adress;
   String email;
   String raison;
-  String domaine;
+  // String domaine;
   String password;
   String quartier;
   int status;
@@ -91,7 +91,7 @@ class Company {
         adress: json["adress"],
         email: json["email"],
         raison: json["raison"],
-        domaine: json["domaine"],
+        // domaine: json["domaine"],
         password: json["password"],
         quartier: json["quartier"],
         status: json["status"],
@@ -106,7 +106,7 @@ class Company {
         "adress": adress,
         "email": email,
         "raison": raison,
-        "domaine": domaine,
+        // "domaine": domaine,
         "password": password,
         "quartier": quartier,
         "status": status,

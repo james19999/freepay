@@ -20,6 +20,7 @@ class GlobalControllerNotify extends ChangeNotifier {
 
   List<Transaction> table = [];
   List<dynamic> companies = [];
+
   GlobalControllerNotify() {
     getservice();
     getcarttransaction();
@@ -29,18 +30,27 @@ class GlobalControllerNotify extends ChangeNotifier {
   // ignore: non_constant_identifier_names
 
   getallcompany() async {
-    companies = await CompanyService.getCompay();
+    try {
+      companies = await CompanyService.getCompay();
+    } catch (e) {
+      print("Error: de connexion au serveur");
+    }
+
     notifyListeners();
   }
 
   getservice() async {
-    await Service.getservice();
+    try {
+      await Service.getservice();
+    } catch (e) {}
 
     notifyListeners();
   }
 
   getcarttransaction() async {
-    table = await TransactionService.getcarttransactions();
+    try {
+      table = await TransactionService.getcarttransactions();
+    } catch (e) {}
     try {
       cancelde = table.where((e) => e.status == 'cancelled');
       // ignore: empty_catches

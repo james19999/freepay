@@ -4,11 +4,12 @@ class Company {
   Company({
     this.id,
     this.name,
+    this.img,
     this.phone,
     this.adress,
     this.email,
     this.raison,
-    this.domaine,
+    this.description,
     this.password,
     this.quartier,
     this.status,
@@ -18,11 +19,12 @@ class Company {
 
   dynamic id;
   dynamic name;
+  dynamic img;
   dynamic phone;
   dynamic adress;
   dynamic email;
   dynamic raison;
-  dynamic domaine;
+  dynamic description;
   dynamic password;
   dynamic quartier;
   dynamic status;
@@ -36,11 +38,12 @@ class Company {
   factory Company.fromJson(Map<String, dynamic> json) => Company(
         id: json["id"],
         name: json["name"],
+        img: json["img"],
         phone: json["phone"],
         adress: json["adress"],
         email: json["email"],
         raison: json["raison"],
-        domaine: json["domaine"],
+        description: json["description"],
         password: json["password"],
         quartier: json["quartier"],
         status: json["status"],
@@ -51,11 +54,12 @@ class Company {
   Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
+        "img": img,
         "phone": phone,
         "adress": adress,
         "email": email,
         "raison": raison,
-        "domaine": domaine,
+        "description": description,
         "password": password,
         "quartier": quartier,
         "status": status,

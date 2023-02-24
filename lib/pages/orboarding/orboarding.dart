@@ -2,6 +2,7 @@ import 'package:digitalbank/helper/images.dart';
 import 'package:digitalbank/pages/auth/login.dart';
 import 'package:digitalbank/pages/colors/color.dart';
 import 'package:digitalbank/pages/styles/style.dart';
+import 'package:digitalbank/urls/baseurl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
@@ -25,9 +26,21 @@ class _PageviewPageState extends ConsumerState<PageviewPage> {
   }
 
   List<dynamic> contents = [
-    {"title": "test", "image": logo},
-    {"title": "test", "image": logo},
-    {"title": "test", "image": logo},
+    {
+      "title":
+          "Acheter pour vous et pour vos proches en toute sécurité avec ${appName} univers togolais.",
+      "image": s1
+    },
+    {
+      "title":
+          "Transféré de l'argent de votre carte ${appName} ver vos boutiques pour effectuer les achats.",
+      "image": s2
+    },
+    {
+      "title":
+          "Possédez une carte virtuelle ${appName} fait de vous un citoyen de l'univers Togolais.",
+      "image": s3
+    },
   ];
 
   @override
@@ -52,31 +65,42 @@ class _PageviewPageState extends ConsumerState<PageviewPage> {
                   },
                   itemBuilder: (_, i) {
                     var page = contents[i];
-                    return Padding(
-                      padding: const EdgeInsets.all(0.0),
-                      child: Column(
-                        children: [
-                          Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height * 0.42,
-                              child: Image.asset(page['image'])),
-                          SizedBox(
-                            height: 15,
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height * 0.42,
+                            child: Image.asset(page['image'])),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Flexible(
+                                child: Container(
+                                  width: Get.width * 0.69,
+                                  child: Text(
+                                    page['title'],
+                                    style: TextStyle(
+                                        fontSize: fontsizes,
+                                        color: Colors.grey),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                          Text(
-                            page['title'],
-                            style: TextStyle(
-                              fontSize: fontsizes,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 18,
-                          ),
-                          SizedBox(
-                            height: 1,
-                          ),
-                        ],
-                      ),
+                        ),
+                        SizedBox(
+                          height: 18,
+                        ),
+                        SizedBox(
+                          height: 1,
+                        ),
+                      ],
                     );
                   }),
             ),
@@ -98,7 +122,7 @@ class _PageviewPageState extends ConsumerState<PageviewPage> {
                         MaterialStateProperty.all(AppColors.mainColor)),
                 onPressed: () {
                   if (currentIndex == contents.length - 1) {
-                    Get.off(() => Login());
+                    Get.off(() => Login(), transition: Transition.fade);
                   }
                   _pageController!.nextPage(
                       duration: Duration(microseconds: 10),

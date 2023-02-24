@@ -19,129 +19,132 @@ class CardCompany extends ConsumerWidget {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(11.0),
-        child: Container(
-          child: Stack(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                height: Get.height * 0.47,
-                child: Column(children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(8.0),
-                            topLeft: Radius.circular(8.0)),
-                        image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: NetworkImage("${BaseImage}${company.img}"))),
-                    height: Get.height * 0.2,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: company.status == 1
-                            ? Colors.transparent
-                            : Colors.transparent.withOpacity(0.6),
-                        borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(8.0),
-                            topLeft: Radius.circular(8.0)),
-                      ),
-                      height: Get.height * 0.2,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Text(
-                              company.name,
-                              style: StyleText,
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: Get.height * 0.01,
-                        ),
-                        Row(
-                          children: [
-                            Flexible(
-                              child: Text(company.description,
-                                  maxLines: 2,
-                                  style: TextStyle(
-                                      overflow: TextOverflow.ellipsis,
-                                      fontSize: 13)),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: Get.height * 0.02,
-                        ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.phone_android,
-                              color: AppColors.mainColor,
-                            ),
-                            SizedBox(width: Get.width * 0.03),
-                            Text(company.phone),
-                          ],
-                        ),
-                        SizedBox(
-                          height: Get.height * 0.011,
-                        ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.email,
-                              color: AppColors.mainColor,
-                            ),
-                            SizedBox(width: Get.width * 0.03),
-                            Text(company.email),
-                          ],
-                        ),
-                        SizedBox(
-                          height: Get.height * 0.01,
-                        ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.location_on_outlined,
-                              color: AppColors.mainColor,
-                            ),
-                            SizedBox(width: Get.width * 0.03),
-                            Text(company.adress),
-                          ],
-                        )
-                      ],
-                    ),
-                  )
-                ]),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 15.0, vertical: 15.0),
-                child: Container(
+        child: ZoomTapAnimation(
+          child: Container(
+            child: Stack(
+              children: [
+                Container(
                   decoration: BoxDecoration(
-                      color: company.status == 0
-                          ? Colors.black
-                          : AppColors.mainColor,
-                      borderRadius: BorderRadius.circular(10)),
-                  height: Get.height * 0.054,
-                  width: Get.width * 0.3,
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      company.status == 0 ? "Inactif" : "Actif",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  height: Get.height * 0.47,
+                  child: Column(children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(8.0),
+                              topLeft: Radius.circular(8.0)),
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image:
+                                  NetworkImage("${BaseImage}${company.img}"))),
+                      height: Get.height * 0.2,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: company.status == 1
+                              ? Colors.transparent
+                              : Colors.transparent.withOpacity(0.6),
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(8.0),
+                              topLeft: Radius.circular(8.0)),
+                        ),
+                        height: Get.height * 0.2,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                company.name,
+                                style: StyleText,
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: Get.height * 0.01,
+                          ),
+                          Row(
+                            children: [
+                              Flexible(
+                                child: Text(company.description,
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                        overflow: TextOverflow.ellipsis,
+                                        fontSize: 13)),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: Get.height * 0.02,
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.phone_android,
+                                color: AppColors.mainColor,
+                              ),
+                              SizedBox(width: Get.width * 0.03),
+                              Text(company.phone),
+                            ],
+                          ),
+                          SizedBox(
+                            height: Get.height * 0.011,
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.email,
+                                color: AppColors.mainColor,
+                              ),
+                              SizedBox(width: Get.width * 0.03),
+                              Text(company.email),
+                            ],
+                          ),
+                          SizedBox(
+                            height: Get.height * 0.01,
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.location_on_outlined,
+                                color: AppColors.mainColor,
+                              ),
+                              SizedBox(width: Get.width * 0.03),
+                              Text(company.adress),
+                            ],
+                          )
+                        ],
+                      ),
+                    )
+                  ]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 15.0, vertical: 15.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: company.status == 0
+                            ? Colors.black
+                            : AppColors.mainColor,
+                        borderRadius: BorderRadius.circular(10)),
+                    height: Get.height * 0.054,
+                    width: Get.width * 0.3,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        company.status == 0 ? "Inactif" : "Actif",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

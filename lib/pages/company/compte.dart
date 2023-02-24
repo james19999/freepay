@@ -67,7 +67,7 @@ class _CreateCompteState extends ConsumerState<CreateCompte> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: Colors.grey[100],
+        backgroundColor: Colors.grey[200],
         bottomSheet: Container(
             height: Get.height * 0.11,
             width: Get.width,
@@ -96,7 +96,7 @@ class _CreateCompteState extends ConsumerState<CreateCompte> {
 
                             if (check == true) {
                               Toas.getSnackbarsucess(
-                                  appName, "Compte créer avec successe");
+                                  appName, "Votre Compte à été bien  créer. ");
                               _controllername.text = '';
                               _controllerphone = '';
                               _controlleradresse.text = '';
@@ -163,7 +163,10 @@ class _CreateCompteState extends ConsumerState<CreateCompte> {
               ),
             ],
           ),
-          title: const Text('Créer un compte '),
+          title: const Text(
+            'Créer un compte entreprise',
+            style: StyleText,
+          ),
         ),
         body: Form(
           key: _formk,

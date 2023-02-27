@@ -55,14 +55,20 @@ class CardTransaction extends ConsumerWidget {
                           : Colors.transparent,
               size: 30,
             ),
-            title: Text(transaction.title),
+            title: Text(
+              transaction.title,
+              style: TextStyle(
+                overflow: TextOverflow.ellipsis,
+              ),
+              maxLines: 1,
+            ),
             subtitle: Text("# ${transaction.code_tansaction}"),
             trailing: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(DateConverter.estimatedDate(transaction.created)),
                 Text(
-                  "${transaction.amount} F",
+                  "${transaction.amount} XOF",
                   style: StyleText.copyWith(
                     fontSize: 14,
                     // color: transaction.status == 'pending'

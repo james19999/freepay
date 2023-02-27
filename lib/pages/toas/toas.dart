@@ -42,6 +42,7 @@ class Toas {
           title: Text(
             message,
             style: StyleText.copyWith(fontSize: fontsizes),
+            textAlign: TextAlign.center,
           ),
           actionsAlignment: MainAxisAlignment.spaceEvenly,
           actions: [

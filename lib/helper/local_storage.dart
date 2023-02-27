@@ -1,6 +1,7 @@
 import 'package:get_storage/get_storage.dart';
 
 class localstorage {
+  localstorage();
   static final storage = GetStorage();
 
   static get username => storage.read("username") ?? '';

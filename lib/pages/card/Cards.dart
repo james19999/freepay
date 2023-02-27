@@ -11,6 +11,7 @@ import 'package:digitalbank/pages/card/detail.dart';
 import 'package:digitalbank/pages/colors/color.dart';
 import 'package:digitalbank/pages/company/company_list.dart';
 import 'package:digitalbank/pages/historiques/history.dart';
+import 'package:digitalbank/pages/splashlogout.dart';
 import 'package:digitalbank/pages/styles/style.dart';
 import 'package:digitalbank/pages/toas/toas.dart';
 import 'package:digitalbank/pages/transactions/canceld_list.dart';
@@ -79,7 +80,7 @@ class _CardsState extends ConsumerState<Cards> {
             ],
             elevation: 0,
             title: Image.asset(
-              logo,
+              logos,
               height: 70,
             ),
             centerTitle: true,
@@ -103,7 +104,7 @@ class _CardsState extends ConsumerState<Cards> {
                             height: 80,
                             child: ClipOval(
                                 child: Image.asset(
-                              logo,
+                              logos,
                               fit: BoxFit.cover,
                             ))),
                       ),
@@ -162,7 +163,7 @@ class _CardsState extends ConsumerState<Cards> {
                         onConfirm: () async {
                           var decon = await auth.LogoutUser();
                           if (decon == true) {
-                            Get.offAll(() => Login(),
+                            Get.offAll(() => Splashlogout(),
                                 transition: Transition.zoom);
                           }
                         },
@@ -221,12 +222,19 @@ class _CardsState extends ConsumerState<Cards> {
                                         Text(
                                           "Free Pay",
                                           style: StyleText.copyWith(
-                                              color: Colors.white),
+                                            color: Colors.white,
+                                            fontSize: fontsizes,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                          maxLines: 1,
                                         ),
                                         Text(
                                           "${company}",
                                           style: StyleText.copyWith(
-                                              color: Colors.white),
+                                              color: Colors.white,
+                                              overflow: TextOverflow.ellipsis,
+                                              fontSize: fontsizes),
+                                          maxLines: 1,
                                         )
                                       ],
                                     ),
@@ -286,12 +294,15 @@ class _CardsState extends ConsumerState<Cards> {
                                           "${Cartes.code}",
                                           style: StyleText.copyWith(
                                               color: Colors.white,
+                                              fontSize: fontsizes,
+                                              overflow: TextOverflow.ellipsis,
                                               letterSpacing: 3.0),
                                         ),
                                         Text(
-                                          "${Cartes.amount} F",
+                                          "${Cartes.amount} XOF",
                                           style: StyleText.copyWith(
                                               color: Colors.white,
+                                              fontSize: fontsizes,
                                               letterSpacing: 3.0),
                                         ),
                                       ],
@@ -310,13 +321,17 @@ class _CardsState extends ConsumerState<Cards> {
                                           child: Text(
                                             "${namecostumer}",
                                             style: StyleText.copyWith(
-                                                color: Colors.white),
+                                                color: Colors.white,
+                                                overflow: TextOverflow.ellipsis,
+                                                fontSize: fontsizes),
+                                            maxLines: 1,
                                           ),
                                         ),
                                         Text(
                                           "${Cartes.created} ",
                                           style: StyleText.copyWith(
-                                              color: Colors.white),
+                                              color: Colors.white,
+                                              fontSize: fontsizes),
                                         )
                                       ],
                                     ),
@@ -616,7 +631,7 @@ class _CardsState extends ConsumerState<Cards> {
                                   ))
                           : Center(
                               child: Text(
-                              "aucune transaction n'a été effectuée",
+                              "Aucune transaction n'a été effectuée",
                               style: StyleText.copyWith(fontSize: 16),
                             )),
                     ),
@@ -631,7 +646,7 @@ class _CardsState extends ConsumerState<Cards> {
             context: context,
             builder: (context) {
               return AlertDialog(
-                title: Text("Voulez vous fermer l'application"),
+                title: Text("Voulez vous fermer l'application ?"),
                 actionsAlignment: MainAxisAlignment.spaceEvenly,
                 actions: [
                   TextButton(

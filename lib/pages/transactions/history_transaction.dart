@@ -71,31 +71,34 @@ class _HistoryTransactionState extends ConsumerState<HistoryTransaction> {
             tabs: [
               Tab(
                 child: Text(
-                  "Jour   ",
-                  style: StyleText.copyWith(fontSize: 14),
+                  "Jour",
+                  style: StyleText.copyWith(fontSize: 12),
                 ),
               ),
               Tab(
                 child: Text(
                   "Semaine",
-                  style: StyleText.copyWith(fontSize: 14),
+                  style: StyleText.copyWith(fontSize: 12),
                 ),
               ),
               Tab(
                 child: Text(
                   "Mois",
-                  style: StyleText.copyWith(fontSize: 14),
+                  style: StyleText.copyWith(fontSize: 12),
                 ),
               ),
               Tab(
                 child: Text(
                   "Vue",
-                  style: StyleText.copyWith(fontSize: 14),
+                  style: StyleText.copyWith(fontSize: 12),
                 ),
               ),
             ],
           ),
-          title: const Text('Historiques des transactions'),
+          title: const Text(
+            'Historiques des transactions',
+            style: StyleText,
+          ),
         ),
         body: TabBarView(
           children: [
@@ -118,7 +121,7 @@ class _HistoryTransactionState extends ConsumerState<HistoryTransaction> {
                           strokeWidth: 1,
                           color: AppColors.mainColor,
                         ))
-                      : Text("aucune transaction n'a été effectuée."),
+                      : Text("Aucune transaction n'a été effectuée."),
             ]),
             Column(children: [
               Expanded(
@@ -192,7 +195,9 @@ class _HistoryTransactionState extends ConsumerState<HistoryTransaction> {
                                         height: 40,
                                       ),
                                       Text(
-                                        today == null ? "0 F" : "  ${today} F",
+                                        today == null
+                                            ? "0 XOF"
+                                            : "  ${today} XOF",
                                         style: StyleText.copyWith(fontSize: 14),
                                       )
                                     ],
@@ -228,7 +233,7 @@ class _HistoryTransactionState extends ConsumerState<HistoryTransaction> {
                                         height: 40,
                                       ),
                                       Text(
-                                        week == null ? "0 F" : "${week} F",
+                                        week == null ? "0 XOF" : "${week} XOF",
                                         style: StyleText.copyWith(fontSize: 14),
                                       )
                                     ],
@@ -262,7 +267,9 @@ class _HistoryTransactionState extends ConsumerState<HistoryTransaction> {
                                         height: 40,
                                       ),
                                       Text(
-                                        month == null ? "0 F" : "${month} F",
+                                        month == null
+                                            ? "0 XOF"
+                                            : "${month} XOF",
                                         style: StyleText.copyWith(fontSize: 14),
                                       )
                                     ],

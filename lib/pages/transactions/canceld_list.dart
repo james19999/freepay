@@ -33,8 +33,7 @@ class CanceldList extends ConsumerWidget {
                             verticalOffset: 50.0,
                             child: FadeInAnimation(
                               child: CardTransaction(
-                                transaction:
-                                    GlobalProvider.cancelde.length[index],
+                                transaction: GlobalProvider.cancelde[index],
                               ),
                             ),
                           ),
@@ -42,9 +41,14 @@ class CanceldList extends ConsumerWidget {
                       );
                     }))
             : Center(
-                child: CircularProgressIndicator(
-                strokeWidth: 1,
-                color: AppColors.mainColor,
+                child: Column(
+                children: [
+                  CircularProgressIndicator(
+                    strokeWidth: 1,
+                    color: AppColors.mainColor,
+                  ),
+                  Text("Aucune transaction annulé")
+                ],
               )),
       ]),
     );

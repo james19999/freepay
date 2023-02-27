@@ -3,6 +3,7 @@ import 'package:digitalbank/helper/images.dart';
 import 'package:digitalbank/pages/company/compte.dart';
 import 'package:digitalbank/pages/card/Cards.dart';
 import 'package:digitalbank/pages/colors/color.dart';
+import 'package:digitalbank/pages/splash_home.dart';
 import 'package:digitalbank/pages/styles/style.dart';
 import 'package:digitalbank/pages/toas/toas.dart';
 import 'package:digitalbank/urls/baseurl.dart';
@@ -51,10 +52,10 @@ class _LoginState extends ConsumerState<Login> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       logocontainer(),
-                      // Text(
-                      //   "Identifiant de la carte",
-                      //   // style: StyleText,
-                      // ),
+                      Text(
+                        "Connectez vous à votre carte Free Pay.",
+                        // style: StyleText,
+                      ),
                       SizedBox(
                         height: Get.height * 0.022,
                       ),
@@ -71,7 +72,7 @@ class _LoginState extends ConsumerState<Login> {
             context: context,
             builder: (context) {
               return AlertDialog(
-                title: Text("voulez vous fermer l'application"),
+                title: Text("voulez vous fermer l'application ?"),
                 actionsAlignment: MainAxisAlignment.spaceEvenly,
                 actions: [
                   TextButton(
@@ -196,14 +197,14 @@ class _LoginState extends ConsumerState<Login> {
                         var cheked = await controller.AuthConstumer(
                             emailController.text, identifiantController.text);
                         if (cheked == true) {
-                          Get.offAll(() => Cards(),
+                          Get.offAll(() => SplashHome(),
                               transition: Transition.fade);
                           setState(() {
                             isloade = true;
                           });
                         } else {
                           Toas.getSnackbarEror(appName,
-                              "Erreur de connexion vérifier vos informations");
+                              "Erreur de connexion vérifier vos informations.");
                         }
                       }
                     },
@@ -213,7 +214,7 @@ class _LoginState extends ConsumerState<Login> {
                     ),
                     label: isloade == false
                         ? Text(
-                            "Se Connecter",
+                            "Se Connecter.",
                             style: StyleText.copyWith(color: Colors.white),
                           )
                         : CircularProgressIndicator.adaptive(
@@ -229,7 +230,7 @@ class _LoginState extends ConsumerState<Login> {
                 onPressed: () async {
                   Get.to(() => CreateCompte(), transition: Transition.fade);
                 },
-                child: Text("Créer un compte entreprise"),
+                child: Text("Créer un compte entreprise."),
               )
             ],
           ),

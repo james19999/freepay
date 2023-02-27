@@ -24,6 +24,7 @@ class PadingList extends ConsumerWidget {
                     itemCount: GlobalProvider.pading.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
+                      var t = GlobalProvider.pading[index];
                       return Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: AnimationConfiguration.staggeredList(
@@ -32,19 +33,21 @@ class PadingList extends ConsumerWidget {
                           child: SlideAnimation(
                             verticalOffset: 50.0,
                             child: FadeInAnimation(
-                              child: CardTransaction(
-                                transaction:
-                                    GlobalProvider.pading.length[index],
-                              ),
+                              child: CardTransaction(transaction: t),
                             ),
                           ),
                         ),
                       );
                     }))
             : Center(
-                child: CircularProgressIndicator(
-                strokeWidth: 1,
-                color: AppColors.mainColor,
+                child: Column(
+                children: [
+                  CircularProgressIndicator(
+                    strokeWidth: 1,
+                    color: AppColors.mainColor,
+                  ),
+                  Text("Aucune transaction en cours")
+                ],
               )),
       ]),
     );

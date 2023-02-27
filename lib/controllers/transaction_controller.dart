@@ -33,7 +33,7 @@ class GlobalControllerNotify extends ChangeNotifier {
     try {
       companies = await CompanyService.getCompay();
     } catch (e) {
-      print("Error: de connexion au serveur");
+      // print("Error: de connexion au serveur");
     }
 
     notifyListeners();
@@ -52,15 +52,15 @@ class GlobalControllerNotify extends ChangeNotifier {
       table = await TransactionService.getcarttransactions();
     } catch (e) {}
     try {
-      cancelde = table.where((e) => e.status == 'cancelled');
+      cancelde = table.where((e) => e.status == 'cancelled').toList();
       // ignore: empty_catches
     } catch (e) {}
     try {
-      pading = table.where((e) => e.status == 'pending');
+      pading = table.where((e) => e.status == 'pending').toList();
       // ignore: empty_catches
     } catch (e) {}
     try {
-      success = table.where((e) => e.status == 'success');
+      success = table.where((e) => e.status == 'success').toList();
       // ignore: empty_catches
     } catch (e) {}
     notifyListeners();

@@ -33,19 +33,23 @@ class SuccesList extends ConsumerWidget {
                             verticalOffset: 50.0,
                             child: FadeInAnimation(
                               child: CardTransaction(
-                                transaction:
-                                    GlobalProvider.success.length[index],
+                                transaction: GlobalProvider.success[index],
                               ),
                             ),
                           ),
                         ),
                       );
                     }))
-            : Center(
-                child: CircularProgressIndicator(
-                strokeWidth: 1,
-                color: AppColors.mainColor,
-              )),
+            : Column(
+                children: [
+                  Center(
+                      child: CircularProgressIndicator(
+                    strokeWidth: 1,
+                    color: AppColors.mainColor,
+                  )),
+                  Text("Aucune transaction validé")
+                ],
+              ),
       ]),
     );
   }

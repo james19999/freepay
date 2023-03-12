@@ -81,22 +81,20 @@ class _CreateCompteState extends ConsumerState<CreateCompte> {
                     ? TextButton.icon(
                         onPressed: () async {
                           if (_formk.currentState!.validate()) {
-                            Map<String, String> body = {
-                              "name": _controllername.text,
-                              "phone": _controllerphone,
-                              "adress": _controlleradresse.text,
-                              "email": _controlleremail.text,
-                              "raison": _controllerraison.text,
-                              "description": _controllerdescription.text,
-                              "password": _controllerpassword.text,
-                              "quartier": _controllerquartier.text,
-                            };
                             var check = await CompanyService.CreatCompay(
-                                body, _image!.path);
+                                _controllername.text,
+                                _controllerphone,
+                                _controlleradresse.text,
+                                _controlleremail.text,
+                                _controllerraison.text,
+                                _controllerdescription.text,
+                                _controllerpassword.text,
+                                _controllerquartier.text,
+                                _image!);
 
                             if (check == true) {
-                              Toas.getSnackbarsucess(
-                                  appName, "Votre Compte à été bien  créer. ");
+                              Toas.getSnackbarsucess(appName,
+                                  "Votre Compte à été bien  créer.".tr);
                               _controllername.text = '';
                               _controllerphone = '';
                               _controlleradresse.text = '';
@@ -108,11 +106,15 @@ class _CreateCompteState extends ConsumerState<CreateCompte> {
                               _controllerphone = '';
                               _image = null;
 
-                              Toas.message(context,
-                                  "Compte  enregister téléchargé l'application ${appName} Agent pour vous connectez à votre entreprise.");
+                              Toas.message(
+                                  context,
+                                  "Compte  enregistrer télécharger l'application Free Pay entreprise pour vous connectez à votre entreprise."
+                                      .tr);
                             } else {
-                              Toas.getSnackbarEror(appName,
-                                  "Erreur de créaction du compte vérifié vos informations");
+                              Toas.getSnackbarEror(
+                                  appName,
+                                  "Erreur de créaction du compte vérifié vos informations"
+                                      .tr);
                             }
                           }
                           CompanyList.getallcompany();
@@ -122,16 +124,16 @@ class _CreateCompteState extends ConsumerState<CreateCompte> {
                           color: Colors.white,
                         ),
                         label: Text(
-                          "Enregistrer ",
+                          "Enregistrer".tr,
                           style: StyleText.copyWith(color: Colors.white),
                         ))
                     : TextButton(
                         onPressed: () {
-                          Toas.message(
-                              context, "Sélectionnez une image pour continuer");
+                          Toas.message(context,
+                              "Sélectionnez une image pour continuer".tr);
                         },
                         child: Text(
-                          "Enregistrer",
+                          "Enregistrer".tr,
                           style: StyleText.copyWith(
                               fontSize: fontsizes, color: Colors.white),
                         )),
@@ -145,26 +147,26 @@ class _CreateCompteState extends ConsumerState<CreateCompte> {
             tabs: [
               Tab(
                 child: Text(
-                  "Etape 1   ",
+                  "Etape 1".tr,
                   style: StyleText.copyWith(fontSize: fontsizes),
                 ),
               ),
               Tab(
                 child: Text(
-                  "Etape 2",
+                  "Etape 2".tr,
                   style: StyleText.copyWith(fontSize: fontsizes),
                 ),
               ),
               Tab(
                 child: Text(
-                  "Etape 3",
+                  "Etape 3".tr,
                   style: StyleText.copyWith(fontSize: fontsizes),
                 ),
               ),
             ],
           ),
-          title: const Text(
-            'Créer un compte entreprise',
+          title: Text(
+            'Créer un compte entreprise'.tr,
             style: StyleText,
           ),
         ),
@@ -183,10 +185,10 @@ class _CreateCompteState extends ConsumerState<CreateCompte> {
                           keyboardType: TextInputType.text,
                           // controller: _amount,
                           validator: (value) => value!.isEmpty
-                              ? "Le nom de votre entreprise"
+                              ? "Le nom de votre entreprise".tr
                               : null,
                           decoration: InputDecoration(
-                              label: Text("Nom de l'entreprise"),
+                              label: Text("Nom de l'entreprise".tr),
                               suffixIcon: Icon(Icons.home),
                               isDense: true,
                               filled: true,
@@ -210,9 +212,9 @@ class _CreateCompteState extends ConsumerState<CreateCompte> {
                           keyboardType: TextInputType.text,
                           controller: _controlleradresse,
                           validator: (value) =>
-                              value!.isEmpty ? "Adresse" : null,
+                              value!.isEmpty ? "Adresse".tr : null,
                           decoration: InputDecoration(
-                              label: Text("Adresse de l'entreprise"),
+                              label: Text("Adresse de l'entreprise".tr),
                               suffixIcon: Icon(Icons.location_city),
                               isDense: true,
                               filled: true,
@@ -265,8 +267,8 @@ class _CreateCompteState extends ConsumerState<CreateCompte> {
                           // validator: (value) =>
                           //     value!.isEmpty ? "Raison sociale" : null,
                           decoration: InputDecoration(
-                              hintText: "Optionnel",
-                              label: Text("Raison sociale"),
+                              hintText: "Optionnel".tr,
+                              label: Text("Raison sociale".tr),
                               suffixIcon: Icon(Icons.block_flipped),
                               isDense: true,
                               filled: true,
@@ -291,9 +293,9 @@ class _CreateCompteState extends ConsumerState<CreateCompte> {
                           keyboardType: TextInputType.text,
                           controller: _controllerquartier,
                           validator: (value) =>
-                              value!.isEmpty ? "Quartier" : null,
+                              value!.isEmpty ? "Quartier".tr : null,
                           decoration: InputDecoration(
-                              label: Text("Quartier"),
+                              label: Text("Quartier".tr),
                               suffixIcon: Icon(Icons.home),
                               isDense: true,
                               filled: true,
@@ -331,7 +333,7 @@ class _CreateCompteState extends ConsumerState<CreateCompte> {
                         SizedBox(
                           height: Get.height * 0.02,
                         ),
-                        Text("Logo/Image de couverture")
+                        Text("Logo/Image de couverture".tr)
                       ]),
                 ),
               ),
@@ -344,9 +346,10 @@ class _CreateCompteState extends ConsumerState<CreateCompte> {
                         TextFormField(
                           keyboardType: TextInputType.emailAddress,
                           controller: _controlleremail,
-                          validator: (value) => value!.isEmpty ? "Email" : null,
+                          validator: (value) =>
+                              value!.isEmpty ? "Email".tr : null,
                           decoration: InputDecoration(
-                              label: Text("Email"),
+                              label: Text("Email".tr),
                               suffixIcon: Icon(Icons.mail),
                               isDense: true,
                               filled: true,
@@ -369,12 +372,13 @@ class _CreateCompteState extends ConsumerState<CreateCompte> {
                         ),
                         IntlPhoneField(
                           initialCountryCode: 'TG',
-                          searchText: "Rechercher votre pays",
-                          invalidNumberMessage: "Numéro de téléphone invalide",
+                          searchText: "Rechercher votre pays".tr,
+                          invalidNumberMessage:
+                              "Numéro de téléphone invalide".tr,
                           decoration: InputDecoration(
                             isDense: true,
                             filled: true,
-                            hintText: "Numéro de téléphone",
+                            hintText: "Numéro de téléphone".tr,
                             border: OutlineInputBorder(
                               borderSide: BorderSide(),
                             ),
@@ -397,9 +401,9 @@ class _CreateCompteState extends ConsumerState<CreateCompte> {
                           keyboardType: TextInputType.text,
                           controller: _controllerpassword,
                           validator: (value) =>
-                              value!.isEmpty ? "Mot de passe" : null,
+                              value!.isEmpty ? "Mot de passe".tr : null,
                           decoration: InputDecoration(
-                              label: Text("Choisissez un  Mot de passe"),
+                              label: Text("Choisissez un  Mot de passe".tr),
                               suffixIcon: IconButton(
                                   onPressed: () {
                                     ref.watch(_obscur.notifier).state =
@@ -436,10 +440,10 @@ class _CreateCompteState extends ConsumerState<CreateCompte> {
                           keyboardType: TextInputType.multiline,
                           controller: _controllerdescription,
                           validator: (value) => value!.isEmpty
-                              ? "Une petite description de votre entreprise"
+                              ? "Une petite description de votre entreprise".tr
                               : null,
                           decoration: InputDecoration(
-                              label: Text("Une petite description "),
+                              label: Text("Une petite description".tr),
                               suffixIcon: Icon(Icons.description_outlined),
                               isDense: true,
                               filled: true,

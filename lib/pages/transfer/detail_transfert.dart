@@ -3,8 +3,7 @@ import 'package:digitalbank/models/transaction.dart';
 import 'package:digitalbank/pages/card/Cards.dart';
 import 'package:digitalbank/pages/colors/color.dart';
 import 'package:digitalbank/pages/styles/style.dart';
-import 'package:digitalbank/pages/transfer/add_transfert.dart';
-import 'package:digitalbank/pages/transfer/widget_divider.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -18,7 +17,7 @@ class DetailTransfert extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: Text('Detail transaction'),
+        title: Text('Detail transaction'.tr),
         centerTitle: true,
       ),
       bottomSheet: Container(
@@ -54,7 +53,7 @@ class DetailTransfert extends StatelessWidget {
                     color: Colors.white,
                   ),
                   label: Text(
-                    "Nouvelle transaction",
+                    "Nouvelle transaction".tr,
                     style: StyleText.copyWith(color: Colors.white),
                   )),
             ),
@@ -96,12 +95,12 @@ class DetailTransfert extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Prix ",
+                              "Prix".tr,
                               style: StyleText.copyWith(
                                   color: Colors.white, fontSize: 15),
                             ),
                             Text(
-                              "${transaction.amount} F",
+                              "${transaction.amount} XOF",
                               style: StyleText.copyWith(
                                   color: Colors.white, fontSize: 15),
                             ),

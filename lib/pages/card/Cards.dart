@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:digitalbank/controllers/transaction_controller.dart';
 import 'package:digitalbank/controllers/user_controller.dart';
 import 'package:digitalbank/helper/images.dart';
+import 'package:digitalbank/helper/local_storage.dart';
 import 'package:digitalbank/helper/responsive_helper.dart';
 import 'package:digitalbank/models/cart_data.dart';
 import 'package:digitalbank/models/transaction.dart';
@@ -109,8 +110,8 @@ class _CardsState extends ConsumerState<Cards> {
                             ))),
                       ),
                       Text(
-                        "James",
-                        style: TextStyle(color: AppColors.mainColor),
+                        localstorage.username,
+                        style: TextStyle(color: Colors.white),
                         textAlign: TextAlign.center,
                       ),
                     ],
@@ -145,7 +146,7 @@ class _CardsState extends ConsumerState<Cards> {
                   },
                   leading: Icon(Icons.history),
                   trailing: Text(
-                    "Historiques ",
+                    "Historique".tr,
                   ),
                 ),
                 ListTile(
@@ -153,9 +154,9 @@ class _CardsState extends ConsumerState<Cards> {
                   onTap: () async {
                     Get.defaultDialog(
                         title: appName,
-                        middleText: 'Voulez-vous vraiment vous déconnectez',
-                        textCancel: "Non",
-                        textConfirm: "Oui",
+                        middleText: 'Voulez-vous vraiment vous déconnectez'.tr,
+                        textCancel: "Non".tr,
+                        textConfirm: "Oui".tr,
                         confirmTextColor: Colors.white,
                         cancelTextColor: AppColors.mainColor,
                         buttonColor: AppColors.mainColor,
@@ -170,7 +171,7 @@ class _CardsState extends ConsumerState<Cards> {
                         onCancel: () => {});
                   },
                   trailing: Text(
-                    'Déconnexion',
+                    'Déconnexion'.tr,
                     style: StyleText.copyWith(color: Colors.red),
                     textAlign: TextAlign.center,
                   ),
@@ -273,8 +274,8 @@ class _CardsState extends ConsumerState<Cards> {
                                                       ),
                                                 Text(
                                                   Cartes.status == 1
-                                                      ? "Activé"
-                                                      : "Désactivé",
+                                                      ? "Activé".tr
+                                                      : "Désactivé".tr,
                                                   style: StyleText.copyWith(
                                                       color: Colors.white,
                                                       fontSize: 13),
@@ -291,7 +292,7 @@ class _CardsState extends ConsumerState<Cards> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          "${Cartes.code}",
+                                          "${Cartes.code == null ? '' : Cartes.code}",
                                           style: StyleText.copyWith(
                                               color: Colors.white,
                                               fontSize: fontsizes,
@@ -299,7 +300,7 @@ class _CardsState extends ConsumerState<Cards> {
                                               letterSpacing: 3.0),
                                         ),
                                         Text(
-                                          "${Cartes.amount} XOF",
+                                          "${Cartes.amount == null ? '' : Cartes.amount} XOF",
                                           style: StyleText.copyWith(
                                               color: Colors.white,
                                               fontSize: fontsizes,
@@ -328,7 +329,7 @@ class _CardsState extends ConsumerState<Cards> {
                                           ),
                                         ),
                                         Text(
-                                          "${Cartes.created} ",
+                                          "${Cartes.created == null ? '' : Cartes.created} ",
                                           style: StyleText.copyWith(
                                               color: Colors.white,
                                               fontSize: fontsizes),
@@ -401,7 +402,7 @@ class _CardsState extends ConsumerState<Cards> {
                                           color: Colors.red,
                                         ),
                                         Text(
-                                            "Annuler ${GlobalProvider.cancelde == null ? 0 : GlobalProvider.cancelde.length}",
+                                            "${"Annuler".tr} ${GlobalProvider.cancelde == null ? 0 : GlobalProvider.cancelde.length}",
                                             style: StyleText.copyWith(
                                                 fontSize: 13))
                                       ],
@@ -438,7 +439,7 @@ class _CardsState extends ConsumerState<Cards> {
                                           color: Colors.orange,
                                         ),
                                         Text(
-                                          "En cours ${GlobalProvider.pading == null ? 0 : GlobalProvider.pading.length}",
+                                          "${"En cours".tr} ${GlobalProvider.pading == null ? 0 : GlobalProvider.pading.length}",
                                           style:
                                               StyleText.copyWith(fontSize: 13),
                                         )
@@ -475,7 +476,7 @@ class _CardsState extends ConsumerState<Cards> {
                                           color: Colors.green,
                                         ),
                                         Text(
-                                            "Valider ${GlobalProvider.success == null ? 0 : GlobalProvider.success.length} ",
+                                            "${"Valider".tr} ${GlobalProvider.success == null ? 0 : GlobalProvider.success.length} ",
                                             style: StyleText.copyWith(
                                                 fontSize: 13))
                                       ],
@@ -504,8 +505,8 @@ class _CardsState extends ConsumerState<Cards> {
                                   Cartes.status == 1
                                       ? Get.to(() => AddTransfert(),
                                           transition: Transition.fade)
-                                      : Toas.getSnackbarEror(
-                                          appName, "Votre carte à été bloquée");
+                                      : Toas.getSnackbarEror(appName,
+                                          "Votre carte à été bloquée".tr);
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
@@ -524,7 +525,7 @@ class _CardsState extends ConsumerState<Cards> {
                                         size: 50,
                                         color: AppColors.mainColor,
                                       ),
-                                      Text("Transfert",
+                                      Text("Transfert".tr,
                                           style:
                                               StyleText.copyWith(fontSize: 13))
                                     ],
@@ -558,7 +559,7 @@ class _CardsState extends ConsumerState<Cards> {
                                         color: AppColors.mainColor,
                                       ),
                                       Text(
-                                        "Historique",
+                                        "Historique".tr,
                                         style: StyleText.copyWith(fontSize: 13),
                                       )
                                     ],
@@ -591,7 +592,7 @@ class _CardsState extends ConsumerState<Cards> {
                                         size: 50,
                                         color: AppColors.mainColor,
                                       ),
-                                      Text("Transaction",
+                                      Text("Transaction".tr,
                                           style:
                                               StyleText.copyWith(fontSize: 13))
                                     ],
@@ -608,7 +609,7 @@ class _CardsState extends ConsumerState<Cards> {
                       child: Row(
                         children: [
                           Text(
-                            "Transaction recent",
+                            "Transaction recent".tr,
                             style: StyleText.copyWith(fontSize: 14),
                           ),
                         ],
@@ -631,7 +632,7 @@ class _CardsState extends ConsumerState<Cards> {
                                   ))
                           : Center(
                               child: Text(
-                              "Aucune transaction n'a été effectuée",
+                              "Aucune transaction n'a été effectuée".tr,
                               style: StyleText.copyWith(fontSize: 16),
                             )),
                     ),
@@ -646,20 +647,20 @@ class _CardsState extends ConsumerState<Cards> {
             context: context,
             builder: (context) {
               return AlertDialog(
-                title: Text("Voulez vous fermer l'application ?"),
+                title: Text("Voulez vous fermer l'application ?".tr),
                 actionsAlignment: MainAxisAlignment.spaceEvenly,
                 actions: [
                   TextButton(
                     onPressed: () {
                       Navigator.pop(context, true);
                     },
-                    child: Text('Oui'),
+                    child: Text('Oui'.tr),
                   ),
                   TextButton(
                     onPressed: () {
                       Navigator.pop(context, false);
                     },
-                    child: Text('Non'),
+                    child: Text('Non'.tr),
                   ),
                 ],
               );

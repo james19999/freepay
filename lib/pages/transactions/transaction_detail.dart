@@ -48,7 +48,7 @@ class DetailTransaction extends ConsumerWidget {
                       if (transactions.status == 'pending') {
                         Get.defaultDialog(
                           title:
-                              "Annuler la transaction ${transactions.code_tansaction}",
+                              "${"Annuler la transaction".tr} ${transactions.code_tansaction}",
                           middleText: "",
                           onConfirm: () async {
                             await data.canceledtransaction(
@@ -58,8 +58,8 @@ class DetailTransaction extends ConsumerWidget {
                           },
                           onCancel: () {},
                           radius: 10,
-                          textCancel: "Non",
-                          textConfirm: "Oui",
+                          textCancel: "Non".tr,
+                          textConfirm: "Oui".tr,
                           confirmTextColor: Colors.white,
                           cancelTextColor: AppColors.mainColor,
                           buttonColor: AppColors.mainColor,
@@ -71,7 +71,9 @@ class DetailTransaction extends ConsumerWidget {
                       color: Colors.white,
                     ),
                     label: Text(
-                      transactions.status == 'pending' ? 'Annuler' : 'Terminer',
+                      transactions.status == 'pending'
+                          ? 'Annuler'.tr
+                          : 'Valider'.tr,
                       style: StyleText.copyWith(color: Colors.white),
                     )),
               ),
@@ -113,7 +115,7 @@ class DetailTransaction extends ConsumerWidget {
                         style: StyleText.copyWith(fontSize: 15),
                       ),
                       trailing: Text(
-                        "${transactions.amount} F",
+                        "${transactions.amount} XOF",
                         style: StyleText.copyWith(fontSize: 15),
                       ),
                     ),
@@ -128,11 +130,11 @@ class DetailTransaction extends ConsumerWidget {
                       ),
                       trailing: Text(
                         transactions.status == 'pending'
-                            ? 'En cours'
+                            ? 'En cours'.tr
                             : transactions.status == 'success'
-                                ? 'Terminer'
+                                ? 'Valider'.tr
                                 : transactions.status == 'cancelled'
-                                    ? 'Annuler'
+                                    ? 'Annuler'.tr
                                     : '',
                         style: StyleText.copyWith(
                           fontSize: 14,

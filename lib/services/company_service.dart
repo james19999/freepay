@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:digitalbank/models/company/company.dart';
 import 'package:digitalbank/pages/toas/toas.dart';
 import 'package:digitalbank/urls/baseurl.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -21,22 +23,55 @@ class CompanyService {
     }
   }
 
-  static Future<bool> CreatCompay(
-      Map<String, String> body, String filepath) async {
-    String addimageUrl = "${BaseUrl}createcompany";
-    Map<String, String> headers = {
-      'Content-Type': 'multipart/form-data',
-    };
-    var request = http.MultipartRequest('POST', Uri.parse(addimageUrl))
-      ..fields.addAll(body)
-      ..headers.addAll(headers)
-      ..files.add(await http.MultipartFile.fromPath('img', filepath));
-    var response = await request.send();
-    if (response.statusCode == 200) {
-      return true;
-    } else {
-      return false;
-    }
+  // static Future<bool> CreatCompay(
+  //     Map<String, String> body, String filepath) async {
+  //   String addimageUrl = "${BaseUrl}createcompany";
+  //   Map<String, String> headers = {
+  //     'Content-Type': 'multipart/form-data',
+  //   };
+  //   var request = http.MultipartRequest('POST', Uri.parse(addimageUrl))
+  //     ..fields.addAll(body)
+  //     ..headers.addAll(headers)
+  //     ..files.add(await http.MultipartFile.fromPath('img', filepath));
+  //   var response = await request.send();
+  //   if (response.statusCode == 200) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
+
+  static CreatCompay(name, phone, adress, email, raison, description, password,
+      quartier, File img) async {
+    Dio dio = Dio();
+    String fileName = img.path.split('/').last;
+    FormData formData = FormData.fromMap({
+      "name": name,
+      "img": await MultipartFile.fromFile(img.path, filename: fileName),
+      "phone": phone,
+      "adress": adress,
+      "email": email,
+      "raison": raison,
+      "description": description,
+      "password": password,
+      "quartier": quartier,
+    });
+    try {
+      var response = await dio.post("${BaseUrl}createcompany", data: formData);
+
+      if (response.statusCode == 200) {
+        var result = response.data;
+
+        if (result['status'] == true) {
+          return true;
+        } else {
+          Toas.getSnackbarEror(
+            appName,
+            result['message'],
+          );
+        }
+      }
+    } catch (e) {}
   }
 
   // static CreatCompay(Company company) async {

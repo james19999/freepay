@@ -4,6 +4,7 @@ import 'package:digitalbank/pages/transactions/widget_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:get/get.dart';
 
 class SuccesList extends ConsumerWidget {
   const SuccesList({super.key});
@@ -14,7 +15,7 @@ class SuccesList extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Valider"),
+        title: Text("Valider".tr),
         centerTitle: true,
       ),
       body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -47,7 +48,7 @@ class SuccesList extends ConsumerWidget {
                     strokeWidth: 1,
                     color: AppColors.mainColor,
                   )),
-                  Text("Aucune transaction validé")
+                  Text("Aucune transaction validé".tr)
                 ],
               ),
       ]),

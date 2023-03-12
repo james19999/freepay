@@ -71,32 +71,32 @@ class _HistoryTransactionState extends ConsumerState<HistoryTransaction> {
             tabs: [
               Tab(
                 child: Text(
-                  "Jour",
+                  "Jour".tr,
                   style: StyleText.copyWith(fontSize: 12),
                 ),
               ),
               Tab(
                 child: Text(
-                  "Semaine",
+                  "Semaine".tr,
                   style: StyleText.copyWith(fontSize: 12),
                 ),
               ),
               Tab(
                 child: Text(
-                  "Mois",
+                  "Mois".tr,
                   style: StyleText.copyWith(fontSize: 12),
                 ),
               ),
               Tab(
                 child: Text(
-                  "Vue",
+                  "Vue".tr,
                   style: StyleText.copyWith(fontSize: 12),
                 ),
               ),
             ],
           ),
-          title: const Text(
-            'Historiques des transactions',
+          title: Text(
+            'Historiques des transactions'.tr,
             style: StyleText,
           ),
         ),
@@ -121,7 +121,7 @@ class _HistoryTransactionState extends ConsumerState<HistoryTransaction> {
                           strokeWidth: 1,
                           color: AppColors.mainColor,
                         ))
-                      : Text("Aucune transaction n'a été effectuée."),
+                      : Text("Aucune transaction n'a été effectuée.".tr),
             ]),
             Column(children: [
               Expanded(
@@ -187,7 +187,7 @@ class _HistoryTransactionState extends ConsumerState<HistoryTransaction> {
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Text(
-                                        "Jours",
+                                        "Jour".tr,
                                         style: StyleText.copyWith(fontSize: 14),
                                       ),
                                       Image.asset(
@@ -225,7 +225,7 @@ class _HistoryTransactionState extends ConsumerState<HistoryTransaction> {
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Text(
-                                        "Semaine",
+                                        "Semaine".tr,
                                         style: StyleText.copyWith(fontSize: 14),
                                       ),
                                       Image.asset(
@@ -259,7 +259,7 @@ class _HistoryTransactionState extends ConsumerState<HistoryTransaction> {
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Text(
-                                        "Mois",
+                                        "Mois".tr,
                                         style: StyleText.copyWith(fontSize: 14),
                                       ),
                                       Image.asset(

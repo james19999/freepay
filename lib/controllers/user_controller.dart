@@ -1,9 +1,6 @@
 import 'dart:convert';
 
 import 'package:digitalbank/helper/local_storage.dart';
-import 'package:digitalbank/models/cart_data.dart';
-import 'package:digitalbank/models/carte_model.dart';
-import 'package:digitalbank/services/carte_service.dart';
 import 'package:digitalbank/urls/baseurl.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

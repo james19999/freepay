@@ -30,4 +30,18 @@ class Service {
       throw Exception('fail to loader');
     }
   }
+
+  static Future<List<Carte>> getAuthCart() async {
+    var url = Uri.parse("${BaseUrl}getauthcart");
+    final response = await http.get(url, headers: {
+      'content-type': 'application/json',
+      "Authorization": "Bearer ${localstorage.token}"
+    });
+    if (response.statusCode == 200) {
+      var result = jsonDecode(response.body)['Cartes'];
+      return List<Carte>.from(result.map((cart) => Carte.fromJson(cart)));
+    } else {
+      throw Exception('fail to loader');
+    }
+  }
 }

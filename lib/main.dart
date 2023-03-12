@@ -1,11 +1,6 @@
-import 'package:digitalbank/helper/local_storage.dart';
-import 'package:digitalbank/models/cart_data.dart';
-import 'package:digitalbank/pages/auth/login.dart';
-
+import 'package:digitalbank/helper/langue.dart';
 import 'package:digitalbank/pages/colors/color.dart';
-import 'package:digitalbank/pages/orboarding/orboarding.dart';
 import 'package:digitalbank/pages/splash.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,6 +25,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      translations: Languages(),
+      locale: Get.deviceLocale,
+      fallbackLocale: const Locale('fr', 'FR'),
       debugShowCheckedModeBanner: false,
       title: '',
       theme: ThemeData(fontFamily: "poppins").copyWith(

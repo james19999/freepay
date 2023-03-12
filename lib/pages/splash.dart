@@ -1,6 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:digitalbank/helper/images.dart';
 import 'package:digitalbank/pages/colors/color.dart';
+import 'package:digitalbank/pages/langue.dart';
 import 'package:digitalbank/pages/orboarding/orboarding.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class Splash extends StatelessWidget {
         height: 500,
         width: 200,
       ),
-      nextScreen: PageviewPage(),
+      nextScreen: Language(),
       splashTransition: SplashTransition.fadeTransition,
     );
   }

@@ -4,6 +4,7 @@ import 'package:digitalbank/pages/transactions/widget_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:get/get.dart';
 
 class PadingList extends ConsumerWidget {
   const PadingList({super.key});
@@ -14,7 +15,7 @@ class PadingList extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("En cours"),
+        title: Text("En cours".tr),
         centerTitle: true,
       ),
       body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -46,7 +47,7 @@ class PadingList extends ConsumerWidget {
                     strokeWidth: 1,
                     color: AppColors.mainColor,
                   ),
-                  Text("Aucune transaction en cours")
+                  Text("Aucune transaction en cours".tr)
                 ],
               )),
       ]),

@@ -34,7 +34,7 @@ class _AddTransfertState extends ConsumerState<AddTransfert> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Transfert"),
+        title: Text("Transfert".tr),
         centerTitle: true,
       ),
       bottomSheet: Container(
@@ -81,10 +81,10 @@ class _AddTransfertState extends ConsumerState<AddTransfert> {
                         });
                         data.getcarttransaction();
                         Toas.getSnackbarsucess(
-                            appName, "Transaction effecftué");
+                            appName, "Transaction effecftué".tr);
                       } else {
                         Toas.getSnackbarEror(
-                            appName, "Entrer un montant valide");
+                            appName, "Entrer un montant valide".tr);
                       }
                     }
                   },
@@ -98,7 +98,7 @@ class _AddTransfertState extends ConsumerState<AddTransfert> {
                           strokeWidth: 2,
                         ),
                   label: Text(
-                    "Envoyer ",
+                    "Envoyer".tr,
                     style: StyleText.copyWith(color: Colors.white),
                   )),
             ),
@@ -117,10 +117,10 @@ class _AddTransfertState extends ConsumerState<AddTransfert> {
                             TextFormField(
                               controller: _libelle,
                               validator: (value) => value!.isEmpty
-                                  ? "libelle du transfert"
+                                  ? "Libelle du transfert".tr
                                   : null,
                               decoration: InputDecoration(
-                                  label: Text("Libelle"),
+                                  label: Text("Libelle".tr),
                                   suffixIcon: Icon(Icons.note_alt),
                                   isDense: true,
                                   filled: true,
@@ -146,11 +146,11 @@ class _AddTransfertState extends ConsumerState<AddTransfert> {
                               keyboardType: TextInputType.number,
                               controller: _amount,
                               validator: (value) => value!.isEmpty
-                                  ? "Le montant du transfert"
+                                  ? "Le montant du transfert".tr
                                   : null,
                               decoration: InputDecoration(
-                                  label: Text("Montant"),
-                                  hintText: "Ex:10000",
+                                  label: Text("Montant".tr),
+                                  hintText: "Ex:10000".tr,
                                   suffixIcon:
                                       Icon(Icons.monetization_on_outlined),
                                   isDense: true,

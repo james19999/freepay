@@ -28,17 +28,20 @@ class _PageviewPageState extends ConsumerState<PageviewPage> {
   List<dynamic> contents = [
     {
       "title":
-          "Acheter pour vous et pour vos proches en toute sécurité avec ${appName} univers togolais.",
+          "Acheter pour vous et pour vos proches en toute sécurité avec Free Pay univers togolais."
+              .tr,
       "image": s1
     },
     {
       "title":
-          "Transféré de l'argent de votre carte ${appName} ver vos boutiques pour effectuer les achats.",
+          "Transféré de l'argent de votre carte Free Pay ver vos boutiques pour effectuer les achats."
+              .tr,
       "image": s2
     },
     {
       "title":
-          "Possédez une carte virtuelle ${appName} fait de vous un citoyen de l'univers Togolais.",
+          "Possédez une carte virtuelle Free Pay fait de vous un citoyen de l'univers Togolais."
+              .tr,
       "image": s3
     },
   ];
@@ -130,8 +133,8 @@ class _PageviewPageState extends ConsumerState<PageviewPage> {
                 },
                 child: Text(
                     currentIndex == contents.length - 1
-                        ? 'Commencer'
-                        : "Suivant",
+                        ? 'Commencer'.tr
+                        : "Suivant".tr,
                     style: TextStyle(
                       fontSize: fontsizes,
                     )),

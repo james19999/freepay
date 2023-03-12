@@ -4,6 +4,7 @@ import 'package:digitalbank/pages/transactions/widget_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:get/get.dart';
 
 class CanceldList extends ConsumerWidget {
   const CanceldList({super.key});
@@ -14,7 +15,7 @@ class CanceldList extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Annuler"),
+        title: Text("Annuler".tr),
         centerTitle: true,
       ),
       body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -47,7 +48,7 @@ class CanceldList extends ConsumerWidget {
                     strokeWidth: 1,
                     color: AppColors.mainColor,
                   ),
-                  Text("Aucune transaction annulé")
+                  Text("Aucune transaction annulé".tr)
                 ],
               )),
       ]),

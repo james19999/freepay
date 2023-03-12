@@ -1,0 +1,188 @@
+import 'package:get/get.dart';
+
+class Languages extends Translations {
+  @override
+  Map<String, Map<String, String>> get keys => {
+        'fr_FR': {
+          'Choisissez votre langue': 'Choisissez votre langue',
+          'Commencer': 'Commencer',
+          'Suivant': 'Suivant',
+          "Acheter pour vous et pour vos proches en toute sécurité avec Free Pay univers togolais.":
+              'Acheter pour vous et pour vos proches en toute sécurité avec Free Pay univers togolais.',
+          "Possédez une carte virtuelle Free Pay fait de vous un citoyen de l'univers Togolais.":
+              "Possédez une carte virtuelle Free Pay fait de vous un citoyen de l'univers Togolais.",
+          "Transféré de l'argent de votre carte Free Pay ver vos boutiques pour effectuer les achats.":
+              "Transféré de l'argent de votre carte Free Pay ver vos boutiques pour effectuer les achats.",
+          "Créer un compte entreprise.": "Créer un compte entreprise.",
+          "Se Connecter.": "Se Connecter.",
+          "Erreur de connexion vérifier vos informations.":
+              "Erreur de connexion vérifier vos informations.",
+          "Votre identifiant": "Votre identifiant",
+          "Entrer votre identifiant": "Entrer votre identifiant",
+          "Votre adresse mail": "Votre adresse mail",
+          "Entrer votre adresse mail": "Entrer votre adresse mail",
+          "Non": "Non",
+          "Oui": "Oui",
+          "Voulez vous fermer l'application ?":
+              "Voulez vous fermer l'application ?",
+          "Connectez vous à votre carte Free Pay.":
+              "Connectez vous à votre carte Free Pay.",
+          "Une petite description": "Une petite description",
+          "Une petite description de votre entreprise":
+              "Une petite description de votre entreprise",
+          "Choisissez un  Mot de passe": "Choisissez un  Mot de passe",
+          "Mot de passe": "Mot de passe",
+          "Numéro de téléphone": "Numéro de téléphone",
+          "Numéro de téléphone invalide": "Numéro de téléphone invalide",
+          "Rechercher votre pays": "Rechercher votre pays",
+          "Email": "Email",
+          "Logo/Image de couverture": "Logo/Image de couverture",
+          "Quartier": "Quartier",
+          "Raison sociale": "Raison sociale",
+          "Optionnel": "Optionnel",
+          "Adresse de l'entreprise": "Adresse de l'entreprise",
+          "Adresse": "Adresse",
+          "Nom de l'entreprise": "Nom de l'entreprise",
+          "Le nom de votre entreprise": "Le nom de votre entreprise",
+          "Créer un compte entreprise": "Créer un compte entreprise",
+          "Etape 3": "Etape 3",
+          "Etape 2": "Etape 2",
+          "Etape 1": "Etape 1",
+          "Enregistrer": "Enregistrer",
+          "Sélectionnez une image pour continuer":
+              "Sélectionnez une image pour continuer",
+          "Erreur de créaction du compte vérifié vos informations":
+              "Erreur de créaction du compte vérifié vos informations",
+          "Compte  enregistrer télécharger l'application Free Pay entreprise pour vous connectez à votre entreprise.":
+              "Compte  enregistrer télécharger l'application Free Pay entreprise pour vous connectez à votre entreprise.",
+          "Votre Compte à été bien  créer.": "Votre Compte à été bien  créer.",
+          "Aucune transaction n'a été effectuée":
+              "Aucune transaction n'a été effectuée",
+          "Transaction recent": "Transaction recent",
+          "Transaction": "Transaction",
+          "Historique": "Historique",
+          "Transfert": "Transfert",
+          "Votre carte à été bloquée": "Votre carte à été bloquée",
+          "Valider": "Valider",
+          "En cours": "En cours",
+          "Annuler": "Annuler",
+          "Désactivé": "Désactivé",
+          "Activé": "Activé",
+          "Déconnexion": "Déconnexion",
+          "Voulez-vous vraiment vous déconnectez":
+              "Voulez-vous vraiment vous déconnectez",
+          "Aucune transaction annulé": "Aucune transaction annulé",
+          "Aucune transaction en cours": "Aucune transaction en cours",
+          "Aucune transaction validé": "Aucune transaction validé",
+          "Le montant du transfert": "Le montant du transfert",
+          "Montant": "Montant",
+          "Libelle": "Libelle",
+          "Libelle du transfert": "Libelle du transfert",
+          "Envoyer": "Envoyer",
+          "Entrer un montant valide": "Entrer un montant valide",
+          "Transaction effecftué": "Transaction effecftué",
+          "Prix": "Prix",
+          "Nouvelle transaction": "Nouvelle transaction",
+          "Detail transaction": "Detail transaction",
+          "Mois": "Mois",
+          "Semaine": "Semaine",
+          "Jour": "Jour",
+          "Aucune transaction n'a été effectuée.":
+              "Aucune transaction n'a été effectuée.",
+          "Historiques des transactions": "Historiques des transactions",
+          "Vue": "Vue",
+          "Annuler la transaction": "Annuler la transaction",
+        },
+        'en_US': {
+          "Annuler la transaction": "Cancel the transaction",
+          "Vue": "View",
+          "Historiques des transactions": "Transaction history",
+          "Aucune transaction n'a été effectuée.":
+              "No transactions have been made.",
+          "Jour": "Day",
+          "Semaine": "Week",
+          "Mois": "Month",
+          "Detail transaction": "Detail transaction",
+          "Nouvelle transaction": "New transaction",
+          "Prix": "Price",
+          "Transaction effecftué": "Transaction made",
+          "Entrer un montant valide": "Enter a valid amount",
+          "Envoyer": "Send",
+          "Libelle du transfert": "Wording of the transfer",
+          "Libelle": "Wording",
+          "Montant": "Amount",
+          "Le montant du transfert": "The transfer amount",
+          "Aucune transaction validé": "No transaction validated",
+          "Aucune transaction en cours": "No transactions in progress",
+          "Aucune transaction annulé": "No transactions canceled",
+          "Voulez-vous vraiment vous déconnectez":
+              "Do you really want to disconnect",
+          "Déconnexion": "Logout",
+          "Activé": "Enabled",
+          "Désactivé": "Disabled",
+          "Annuler": "Cancel",
+          "En cours": "In progress",
+          "Valider": "Successful",
+          "Votre carte à été bloquée": "Your card has been blocked",
+          "Transfert": "Transfer",
+          "Historique": "Historical",
+          "Transaction": "Transaction",
+          "Transaction recent": "Recent transaction",
+          "Aucune transaction n'a été effectuée":
+              "No transactions have been made",
+          "Votre Compte à été bien  créer.":
+              "Your account has been successfully created.",
+          "Compte  enregistrer télécharger l'application Free Pay entreprise pour vous connectez à votre entreprise.":
+              "Account register download the Free Pay business app to log in to your business.",
+          "Erreur de créaction du compte vérifié vos informations":
+              "Account creation error verified your information",
+          "Sélectionnez une image pour continuer":
+              "Select an image to continue",
+          "Enregistrer": "Save",
+          "Etape 1": "Step 1",
+          "Etape 2": "Step 2",
+          "Etape 3": "Step 3",
+          "Créer un compte entreprise": "Create a business account",
+          "Le nom de votre entreprise": "Your business name",
+          "Nom de l'entreprise": "Company Name",
+          "Adresse": "Address",
+          "Adresse de l'entreprise": "Company address",
+          "Optionnel": "Optional",
+          "Raison sociale": "Social reason",
+          "Quartier": "Neighborhood",
+          "Logo/Image de couverture": "Logo/Cover Image",
+          "Email": "E-mail",
+          "Rechercher votre pays": "Find your country",
+          "Numéro de téléphone invalide": "Invalid phone number",
+          "Numéro de téléphone": "Phone number",
+          "Mot de passe": "Password",
+          "Choisissez un  Mot de passe": "Choose a password",
+          "Une petite description de votre entreprise":
+              "A brief description of your business",
+          "Une petite description": "A short description",
+          "Connectez vous à votre carte Free Pay.":
+              "Log in to your Free Pay card.",
+          "Voulez vous fermer l'application ?":
+              "Do you want to close the application?",
+          "Oui": "Yes",
+          "Non": "No",
+          "Entrer votre adresse mail": "Enter your email address",
+          "Votre adresse mail": "Your email",
+          "Entrer votre identifiant": "Enter your username",
+          "Votre identifiant": "Your username",
+          "Erreur de connexion vérifier vos informations.":
+              "Connection error verify your information.",
+          "Se Connecter.": "Login",
+          "Créer un compte entreprise.": "Create a business account.",
+          'Choisissez votre langue': 'Choose your language',
+          'Commencer': 'Start',
+          "Suivant": 'Next',
+          "Acheter pour vous et pour vos proches en toute sécurité avec Free Pay univers togolais.":
+              'Buy for yourself and for your loved ones in complete safety with Free Pay Togolese universe.',
+          "Possédez une carte virtuelle Free Pay fait de vous un citoyen de l'univers Togolais.":
+              "Owning a Free Pay virtual card makes you a citizen of the Togolese universe.",
+          "Transféré de l'argent de votre carte Free Pay ver vos boutiques pour effectuer les achats.":
+              " Transferred money from your Free Pay card to your stores to make purchases."
+        },
+      };
+}

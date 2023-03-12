@@ -53,7 +53,7 @@ class _LoginState extends ConsumerState<Login> {
                     children: [
                       logocontainer(),
                       Text(
-                        "Connectez vous à votre carte Free Pay.",
+                        "Connectez vous à votre carte Free Pay.".tr,
                         // style: StyleText,
                       ),
                       SizedBox(
@@ -72,20 +72,20 @@ class _LoginState extends ConsumerState<Login> {
             context: context,
             builder: (context) {
               return AlertDialog(
-                title: Text("voulez vous fermer l'application ?"),
+                title: Text("Voulez vous fermer l'application ?".tr),
                 actionsAlignment: MainAxisAlignment.spaceEvenly,
                 actions: [
                   TextButton(
                     onPressed: () {
                       Navigator.pop(context, true);
                     },
-                    child: Text('Oui'),
+                    child: Text('Oui'.tr),
                   ),
                   TextButton(
                     onPressed: () {
                       Navigator.pop(context, false);
                     },
-                    child: Text('Non'),
+                    child: Text('Non'.tr),
                   ),
                 ],
               );
@@ -113,7 +113,7 @@ class _LoginState extends ConsumerState<Login> {
               TextFormField(
                 controller: emailController,
                 validator: (value) =>
-                    value!.isEmpty ? "Entre votre adresse mail" : null,
+                    value!.isEmpty ? "Entrer votre adresse mail".tr : null,
                 decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
@@ -128,7 +128,7 @@ class _LoginState extends ConsumerState<Login> {
                       ),
                     ),
                     isDense: true,
-                    hintText: "Votre adresse mail",
+                    hintText: "Votre adresse mail".tr,
                     prefixIcon: Icon(
                       Icons.mail,
                       color: AppColors.mainColor,
@@ -142,7 +142,7 @@ class _LoginState extends ConsumerState<Login> {
               TextFormField(
                 controller: identifiantController,
                 validator: (value) =>
-                    value!.isEmpty ? "Entrer votre identifiant" : null,
+                    value!.isEmpty ? "Entrer votre identifiant".tr : null,
                 obscureText: obscur,
                 decoration: InputDecoration(
                     focusedBorder: OutlineInputBorder(
@@ -157,7 +157,7 @@ class _LoginState extends ConsumerState<Login> {
                         color: AppColors.mainColor,
                       ),
                     ),
-                    hintText: "Votre identifiant",
+                    hintText: "Votre identifiant".tr,
                     isDense: true,
                     prefixIcon: Icon(
                       Icons.key,
@@ -203,8 +203,10 @@ class _LoginState extends ConsumerState<Login> {
                             isloade = true;
                           });
                         } else {
-                          Toas.getSnackbarEror(appName,
-                              "Erreur de connexion vérifier vos informations.");
+                          Toas.getSnackbarEror(
+                              appName,
+                              "Erreur de connexion vérifier vos informations."
+                                  .tr);
                         }
                       }
                     },
@@ -214,7 +216,7 @@ class _LoginState extends ConsumerState<Login> {
                     ),
                     label: isloade == false
                         ? Text(
-                            "Se Connecter.",
+                            "Se Connecter.".tr,
                             style: StyleText.copyWith(color: Colors.white),
                           )
                         : CircularProgressIndicator.adaptive(
@@ -230,7 +232,7 @@ class _LoginState extends ConsumerState<Login> {
                 onPressed: () async {
                   Get.to(() => CreateCompte(), transition: Transition.fade);
                 },
-                child: Text("Créer un compte entreprise."),
+                child: Text("Créer un compte entreprise.".tr),
               )
             ],
           ),

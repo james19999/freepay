@@ -98,11 +98,10 @@ class DetailTransaction extends ConsumerWidget {
                       foregroundColor: Colors.white,
                       data: transactions.code_tansaction,
                       version: QrVersions.auto,
-                      size: 160,
+                      size: 180,
                       gapless: false,
-                      embeddedImage: AssetImage(logos),
                       embeddedImageStyle: QrEmbeddedImageStyle(
-                        size: Size(30, 30),
+                        size: Size(40, 40),
                       ),
                     ),
                   )),

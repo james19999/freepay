@@ -76,7 +76,6 @@ class DetailTransfert extends StatelessWidget {
                       version: QrVersions.auto,
                       size: 200,
                       gapless: false,
-                      embeddedImage: AssetImage(logos),
                       embeddedImageStyle: QrEmbeddedImageStyle(
                         size: Size(80, 80),
                       ),

@@ -128,6 +128,8 @@ class _CardsState extends ConsumerState<Cards> {
                   leading: Icon(Icons.phone_android),
                   trailing: Text(
                     "+228 92 21 25 30",
+                      style: StyleText.copyWith(fontSize: 14),
+                       
                   ),
                 ),
                 ListTile(
@@ -137,6 +139,8 @@ class _CardsState extends ConsumerState<Cards> {
                   leading: Icon(Icons.phone),
                   trailing: Text(
                     "+228 96 69 82 56",
+                    style: StyleText.copyWith(fontSize: 14),
+                      
                   ),
                 ),
                 ListTile(
@@ -147,8 +151,70 @@ class _CardsState extends ConsumerState<Cards> {
                   leading: Icon(Icons.history),
                   trailing: Text(
                     "Historique".tr,
+                   style: StyleText.copyWith(fontSize: 14),
+
                   ),
                 ),
+                ListTile(
+            onTap: () {
+              Get.showSnackbar(GetSnackBar(
+                title: "",
+                message: "",
+                messageText: Column(
+                  children: [
+                    Container(
+                      width: Get.width * 0.6,
+                      child: Card(
+                        elevation: 0,
+                        child: ListTile(
+                          onTap: () {
+                            Get.updateLocale(Locale('fr', 'FR'));
+                            Get.back();
+
+                          },
+                          title: Text("Français".tr),
+                          trailing: Image.asset(
+                             "assets/images/fr.png",
+                            width: 50,
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    Container(
+                      width: Get.width * 0.6,
+                      child: Card(
+                        elevation: 0,
+                        child: ListTile(
+                          onTap: () {
+                            Get.updateLocale(Locale('en', 'US'));
+                            Get.back();
+                          },
+                          title: Text("Anglais".tr),
+                          trailing: Image.asset(
+                            "assets/images/en.png",
+                            width: 50,
+                          ),
+                        ),
+                      ),
+                    )
+
+                  ],
+                ),
+                backgroundColor: Colors.transparent,
+                onTap: (snack) {
+                  Get.back();
+                },
+              ));
+            },
+            leading: Icon(
+              Icons.translate_rounded,
+            ),
+        
+            trailing:  Text(
+              "Langue".tr,
+              style: StyleText.copyWith(fontSize: 14),
+            ),),
                 ListTile(
                   leading: Icon(Icons.logout_outlined),
                   onTap: () async {

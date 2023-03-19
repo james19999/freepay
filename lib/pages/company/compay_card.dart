@@ -126,20 +126,13 @@ class CardCompany extends ConsumerWidget {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 15.0, vertical: 15.0),
                   child: Container(
-                    decoration: BoxDecoration(
-                        color: company.status == 0
-                            ? Colors.black
-                            : AppColors.mainColor,
-                        borderRadius: BorderRadius.circular(10)),
+                   
                     height: Get.height * 0.054,
                     width: Get.width * 0.3,
                     child: Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        company.status == 0 ? "Inactif" : "Actif",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white),
-                      ),
+                      alignment: Alignment.topLeft,
+                      child:company.status == 0 ? Icon(Icons.check_circle_outline,color:Colors.black)
+                         :Icon(Icons.check_circle_outline,color:AppColors.mainColor),
                     ),
                   ),
                 ),

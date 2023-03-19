@@ -179,7 +179,6 @@ class _AddTransfertState extends ConsumerState<AddTransfert> {
                                 version: QrVersions.auto,
                                 size: 250,
                                 gapless: false,
-                                embeddedImage: AssetImage(logos),
                                 embeddedImageStyle: QrEmbeddedImageStyle(
                                   size: Size(80, 80),
                                 ),

@@ -64,6 +64,9 @@ class _AddTransfertState extends ConsumerState<AddTransfert> {
               child: TextButton.icon(
                   onPressed: () async {
                     if (_formk.currentState!.validate()) {
+                       setState(() {
+                          isloded = true;
+                        });
                       var confirm = await TransactionService.newTransaction(
                           Transaction(
                               amount: _amount.text,
@@ -76,15 +79,16 @@ class _AddTransfertState extends ConsumerState<AddTransfert> {
                                   title: _libelle.text,
                                   code_tansaction: number),
                             ));
-                        setState(() {
-                          isloded = true;
-                        });
+                       
                         data.getcarttransaction();
                         Toas.getSnackbarsucess(
                             appName, "Transaction effecftué".tr);
                       } else {
                         Toas.getSnackbarEror(
                             appName, "Entrer un montant valide".tr);
+                            setState(() {
+                              isloded=false;
+                            });
                       }
                     }
                   },

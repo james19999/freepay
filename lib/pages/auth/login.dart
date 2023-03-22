@@ -194,19 +194,23 @@ class _LoginState extends ConsumerState<Login> {
                 child: TextButton.icon(
                     onPressed: () async {
                       if (_forme.currentState!.validate()) {
+                        setState(() {
+                            isloade = true;
+                          });
                         var cheked = await controller.AuthConstumer(
                             emailController.text, identifiantController.text);
                         if (cheked == true) {
                           Get.offAll(() => SplashHome(),
                               transition: Transition.fade);
-                          setState(() {
-                            isloade = true;
-                          });
+                          
                         } else {
                           Toas.getSnackbarEror(
                               appName,
                               "Erreur de connexion vérifier vos informations."
                                   .tr);
+                            setState(() {
+                            isloade = false;
+                          });      
                         }
                       }
                     },

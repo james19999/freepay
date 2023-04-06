@@ -17,7 +17,7 @@ class GlobalControllerNotify extends ChangeNotifier {
   var cancelde;
   var pading;
   var success;
-
+  List filteredTempCropList = [];
   List<Transaction> table = [];
   List<dynamic> companies = [];
 
@@ -32,6 +32,7 @@ class GlobalControllerNotify extends ChangeNotifier {
   getallcompany() async {
     try {
       companies = await CompanyService.getCompay();
+      filteredTempCropList=companies;
     } catch (e) {
       // print("Error: de connexion au serveur");
     }
@@ -75,14 +76,23 @@ class GlobalControllerNotify extends ChangeNotifier {
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body);
       if (result['status'] == true) {
-        Toas.getSnackbarsucess("App name", result['message']);
+        Toas.getSnackbarsucess(appName, result['message']);
         notifyListeners();
       } else {
-        Toas.getSnackbarEror("App Name", result['message']);
+        Toas.getSnackbarEror(appName, result['message']);
       }
     } else {
       throw Exception('fail to loader');
     }
+  }
+
+
+    filterCrop(value) {
+    filteredTempCropList = companies
+        .where((croplist) =>
+            croplist.name.toLowerCase().contains(value.toLowerCase()))
+        .toList();
+    notifyListeners();
   }
 }
 

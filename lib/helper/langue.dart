@@ -92,8 +92,12 @@ class Languages extends Translations {
           "Historiques des transactions": "Historiques des transactions",
           "Vue": "Vue",
           "Annuler la transaction": "Annuler la transaction",
+          "Rechercher une entreprise":"Rechercher une entreprise",
+          "Aucune résultat pour votre recherche":"Aucune résultat pour votre recherche",
         },
         'en_US': {
+          "Aucune résultat pour votre recherche":"No result for your search",
+          "Rechercher une entreprise":"Find a company",
           "Annuler la transaction": "Cancel the transaction",
           "Vue": "View",
           "Historiques des transactions": "Transaction history",

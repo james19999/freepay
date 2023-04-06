@@ -38,7 +38,7 @@ class _CreateCompteState extends ConsumerState<CreateCompte> {
   TextEditingController _controlleremail = TextEditingController();
   TextEditingController _controllerpassword = TextEditingController();
   TextEditingController _controllerdescription = TextEditingController();
-  TextEditingController _searchTextController = TextEditingController();
+  TextEditingController _textEditingController = TextEditingController();
   var _controllerphone = "";
   // bool obscur = true;
   bool isloade = false;
@@ -150,6 +150,7 @@ class _CreateCompteState extends ConsumerState<CreateCompte> {
         appBar: AppBar(
           elevation: 0,
           centerTitle: true,
+          
           bottom: TabBar(
             indicatorColor: AppColors.mainColor,
             tabs: [
@@ -243,32 +244,7 @@ class _CreateCompteState extends ConsumerState<CreateCompte> {
                         SizedBox(
                           height: Get.height * 0.03,
                         ),
-                        // TextFormField(
-                        //   keyboardType: TextInputType.text,
-                        //   controller: domaine,
-                        //   validator: (value) =>
-                        //       value!.isEmpty ? "Domaine d 'activité" : null,
-                        //   decoration: InputDecoration(
-                        //       label: Text("Domaine d 'activité"),
-                        //       suffixIcon: Icon(Icons.local_activity_rounded),
-                        //       isDense: true,
-                        //       filled: true,
-                        //       enabledBorder: OutlineInputBorder(
-                        //           borderRadius: BorderRadius.circular(5.0),
-                        //           borderSide: BorderSide(
-                        //             width: 0.0,
-                        //           )),
-                        //       focusedBorder: OutlineInputBorder(
-                        //         borderSide:
-                        //             BorderSide(color: AppColors.mainColor),
-                        //         borderRadius: BorderRadius.circular(5.0),
-                        //       ),
-                        //       border: OutlineInputBorder(
-                        //           borderRadius: BorderRadius.circular(5.0))),
-                        // ),
-                        // SizedBox(
-                        //   height: Get.height * 0.03,
-                        // ),
+                        
                         TextFormField(
                           keyboardType: TextInputType.text,
                           controller: _controllerraison,
@@ -475,34 +451,57 @@ class _CreateCompteState extends ConsumerState<CreateCompte> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Padding(
-                  //     padding: EdgeInsets.only(left: 12.0, right: 12.0),
-                  //     child: TextFormField(
-                  //       controller: _searchTextController,
-                  //       onChanged: (value) async {
-                  //         if (value != '') {
-                  //           CompanyList.companies.forEach((element) {
-                  //             if (element.name.contains(value.toLowerCase())) {
-                  //               ref
-                  //                   .watch(_searchtab.notifier)
-                  //                   .state
-                  //                   .add(element.name);
-                  //               print(ref.watch(_searchtab.notifier).state);
-                  //             }
-                  //           });
-                  //         } else {
-                  //           CompanyList.companies;
-                  //         }
-                  //       },
-                  //       decoration: InputDecoration(
-                  //           hintText: 'Rechercher une entreprise',
-                  //           suffixIcon: Icon(Icons.search_rounded)),
-                  //     )),
-                  CompanyList.companies.length > 0
-                      ? Expanded(
-                          child: AnimationLimiter(
+                  Padding(
+                      padding: EdgeInsets.only(left: 12.0, right: 12.0),
+                      child:
+                        
+                       TextFormField(
+                        controller: _textEditingController,
+                           onChanged: (value) {
+                             CompanyList.filterCrop(value);
+                              },
+                        decoration: InputDecoration(
+                            hintText: 'Rechercher une entreprise'.tr,
+                            suffixIcon: Icon(Icons.search_rounded)),
+                      ) 
+                      ),
+                   Expanded(
+                          child: 
+                            _textEditingController.text.isNotEmpty &&
+                      CompanyList.filteredTempCropList.isEmpty
+                  ? Center(
+                      child: Padding(
+                        padding:  EdgeInsets.only(left: 10.0, right: 10.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children:  [
+                            Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Icon(
+                                Icons.search_off,
+                                size: 80,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(5.0),
+                              child: Center(
+                                child: Text(
+                                  'Aucune résultat pour votre recherche'.tr,
+                                  style: TextStyle(
+                                      fontSize: fontsizes,
+                                      fontWeight: FontWeight.normal),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  : CompanyList.filteredTempCropList.isNotEmpty
+                      ?
+                          AnimationLimiter(
                             child: ListView.builder(
-                                itemCount: CompanyList.companies.length,
+                                itemCount: CompanyList.filteredTempCropList.length,
                                 shrinkWrap: true,
                                 itemBuilder: (context, index) {
                                   return AnimationConfiguration.staggeredList(
@@ -513,21 +512,22 @@ class _CreateCompteState extends ConsumerState<CreateCompte> {
                                       child: FadeInAnimation(
                                           child: CardCompany(
                                               company: CompanyList
-                                                  .companies[index])),
+                                                  .filteredTempCropList[index])),
                                     ),
                                   );
                                 }),
+                          )  : Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CircularProgressIndicator(
+                                  color: AppColors.mainColor, strokeWidth: 1.5),
+                              
+                            ],
                           ),
                         )
-                      : Center(
-                          child: Column(
-                          children: [
-                            CircularProgressIndicator(
-                              backgroundColor: AppColors.mainColor,
-                              strokeWidth: 1,
-                            ),
-                          ],
-                        )),
+                        )
+                    
                 ],
               ),
             ],

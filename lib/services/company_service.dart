@@ -56,9 +56,9 @@ class CompanyService {
       "password": password,
       "quartier": quartier,
     });
-    try {
       var response = await dio.post("${BaseUrl}createcompany", data: formData);
-
+       
+    try {
       if (response.statusCode == 200) {
         var result = response.data;
 
@@ -67,7 +67,7 @@ class CompanyService {
         } else {
           Toas.getSnackbarEror(
             appName,
-            result['message'],
+             "Error",
           );
         }
       }

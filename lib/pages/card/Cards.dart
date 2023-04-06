@@ -155,6 +155,7 @@ class _CardsState extends ConsumerState<Cards> {
 
                   ),
                 ),
+
                 ListTile(
             onTap: () {
               Get.showSnackbar(GetSnackBar(
@@ -215,6 +216,8 @@ class _CardsState extends ConsumerState<Cards> {
               "Langue".tr,
               style: StyleText.copyWith(fontSize: 14),
             ),),
+
+            
                 ListTile(
                   leading: Icon(Icons.logout_outlined),
                   onTap: () async {

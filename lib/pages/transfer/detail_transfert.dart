@@ -117,7 +117,7 @@ class DetailTransfert extends StatelessWidget {
                             style: StyleText.copyWith(
                                 color: Colors.black, fontSize: 15),
                             overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
+                            maxLines: 1,
                           ),
                         ),
                         Text(

@@ -125,7 +125,14 @@ class _CardsState extends ConsumerState<Cards> {
                   onTap: () {
                     // App.phone();
                   },
-                  leading: Icon(Icons.phone_android),
+                  leading: Container(
+                     height: Get.height *0.05,
+                     width: Get.width *0.1,
+                     decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: AppColors.mainColor,
+                     ),
+                    child: Icon(Icons.phone_android,color: Colors.white,)),
                   trailing: Text(
                     "+228 92 21 25 30",
                       style: StyleText.copyWith(fontSize: 14),
@@ -136,7 +143,14 @@ class _CardsState extends ConsumerState<Cards> {
                   onTap: () async {
                     // App.Tel();
                   },
-                  leading: Icon(Icons.phone),
+                  leading: Container(
+                      height: Get.height *0.05,
+                     width: Get.width *0.1,
+                     decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: AppColors.mainColor,
+                     ),
+                    child: Icon(Icons.phone,color: Colors.white,)),
                   trailing: Text(
                     "+228 96 69 82 56",
                     style: StyleText.copyWith(fontSize: 14),
@@ -148,7 +162,14 @@ class _CardsState extends ConsumerState<Cards> {
                     Get.to(() => HistoryTransaction(),
                         transition: Transition.zoom);
                   },
-                  leading: Icon(Icons.history),
+                  leading: Container(
+                    height: Get.height *0.05,
+                     width: Get.width *0.1,
+                     decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: AppColors.mainColor,
+                     ),
+                    child: Icon(Icons.history,color: Colors.white,)),
                   trailing: Text(
                     "Historique".tr,
                    style: StyleText.copyWith(fontSize: 14),
@@ -208,8 +229,17 @@ class _CardsState extends ConsumerState<Cards> {
                 },
               ));
             },
-            leading: Icon(
-              Icons.translate_rounded,
+            leading: Container(
+                height: Get.height *0.05,
+                width: Get.width *0.1,
+                decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                color: AppColors.mainColor,
+                     ),
+              child: Icon(
+                Icons.translate_rounded,
+                color: Colors.white,
+              ),
             ),
         
             trailing:  Text(
@@ -219,7 +249,14 @@ class _CardsState extends ConsumerState<Cards> {
 
             
                 ListTile(
-                  leading: Icon(Icons.logout_outlined),
+                  leading: Container(
+                    height: Get.height *0.05,
+                     width: Get.width *0.1,
+                     decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: Colors.red,
+                     ),
+                    child: Icon(Icons.logout_outlined,color: Colors.white,)),
                   onTap: () async {
                     Get.defaultDialog(
                         title: appName,
@@ -343,8 +380,8 @@ class _CardsState extends ConsumerState<Cards> {
                                                       ),
                                                 Text(
                                                   Cartes.status == 1
-                                                      ? "Activé".tr
-                                                      : "Désactivé".tr,
+                                                      ? "Activée".tr
+                                                      : "Désactivée".tr,
                                                   style: StyleText.copyWith(
                                                       color: Colors.white,
                                                       fontSize: 13),
@@ -470,10 +507,12 @@ class _CardsState extends ConsumerState<Cards> {
                                           size: 50,
                                           color: Colors.red,
                                         ),
-                                        Text(
-                                            "${"Annuler".tr} ${GlobalProvider.cancelde == null ? 0 : GlobalProvider.cancelde.length}",
-                                            style: StyleText.copyWith(
-                                                fontSize: 13))
+                                        Expanded(
+                                          child: Text(
+                                              "${"Annuler".tr} ${GlobalProvider.cancelde == null ? 0 : GlobalProvider.cancelde.length}",
+                                              style: StyleText.copyWith(
+                                                  fontSize: 13)),
+                                        )
                                       ],
                                     ),
                                   ),
@@ -507,10 +546,12 @@ class _CardsState extends ConsumerState<Cards> {
                                           size: 50,
                                           color: Colors.orange,
                                         ),
-                                        Text(
-                                          "${"En cours".tr} ${GlobalProvider.pading == null ? 0 : GlobalProvider.pading.length}",
-                                          style:
-                                              StyleText.copyWith(fontSize: 13),
+                                        Expanded(
+                                          child: Text(
+                                            "${"En cours".tr} ${GlobalProvider.pading == null ? 0 : GlobalProvider.pading.length}",
+                                            style:
+                                                StyleText.copyWith(fontSize: 13),
+                                          ),
                                         )
                                       ],
                                     ),
@@ -544,10 +585,12 @@ class _CardsState extends ConsumerState<Cards> {
                                           size: 50,
                                           color: Colors.green,
                                         ),
-                                        Text(
-                                            "${"Valider".tr} ${GlobalProvider.success == null ? 0 : GlobalProvider.success.length} ",
-                                            style: StyleText.copyWith(
-                                                fontSize: 13))
+                                        Expanded(
+                                          child: Text(
+                                              "${"Valider".tr} ${GlobalProvider.success == null ? 0 : GlobalProvider.success.length} ",
+                                              style: StyleText.copyWith(
+                                                  fontSize: 13)),
+                                        )
                                       ],
                                     ),
                                   ),

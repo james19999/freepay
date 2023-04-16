@@ -7,8 +7,8 @@ class Languages extends Translations {
           'Choisissez votre langue': 'Choisissez votre langue',
           'Commencer': 'Commencer',
           'Suivant': 'Suivant',
-          "Acheter pour vous et pour vos proches en toute sécurité avec Free Pay univers togolais.":
-              'Acheter pour vous et pour vos proches en toute sécurité avec Free Pay univers togolais.',
+          "Acheter pour vous et pour vos proches en toute sécurité grâce Free Pay univers togolais.":
+              'Acheter pour vous et pour vos proches en toute sécurité grâce Free Pay univers togolais.',
           "Possédez une carte virtuelle Free Pay fait de vous un citoyen de l'univers Togolais.":
               "Possédez une carte virtuelle Free Pay fait de vous un citoyen de l'univers Togolais.",
           "Transféré de l'argent de votre carte Free Pay ver vos boutiques pour effectuer les achats.":
@@ -94,8 +94,16 @@ class Languages extends Translations {
           "Annuler la transaction": "Annuler la transaction",
           "Rechercher une entreprise":"Rechercher une entreprise",
           "Aucune résultat pour votre recherche":"Aucune résultat pour votre recherche",
+          "Acheter pour vous et pour vos proches en toute sécurité grâce à Free Pay.":"Acheter pour vous et pour vos proches en toute sécurité grâce à Free Pay.",
+          "Effectuer des paiements ou achats depuis votre carte vers une boutique Free Pay.":"Effectuer des paiements ou achats depuis votre carte vers une boutique Free Pay.",
+          "Free Pay aide l'entreprise à fideliser ses client et à augmenter sont chiffres d'affaires.":"Free Pay aide l'entreprise à fideliser ses client et à augmenter sont chiffres d'affaires.",
+          "J'accepte les conditions générales d'utilisation.":"J'accepte les conditions générales d'utilisation.",
         },
         'en_US': {
+          "J'accepte les conditions générales d'utilisation.":"I accept the general terms of use.",
+          "Free Pay aide l'entreprise à fideliser ses client et à augmenter sont chiffres d'affaires.":"Free Pay helps the company to retain its customers and increase its turnover.",
+          "Effectuer des paiements ou achats depuis votre carte vers une boutique Free Pay.":"Make payments or purchases from your card to a Free Pay store.",
+          "Acheter pour vous et pour vos proches en toute sécurité grâce à Free Pay.":"Buy for yourself and for your loved ones in complete safety thanks to Free Pay.",
           "Aucune résultat pour votre recherche":"No result for your search",
           "Rechercher une entreprise":"Find a company",
           "Annuler la transaction": "Cancel the transaction",
@@ -181,7 +189,7 @@ class Languages extends Translations {
           'Choisissez votre langue': 'Choose your language',
           'Commencer': 'Start',
           "Suivant": 'Next',
-          "Acheter pour vous et pour vos proches en toute sécurité avec Free Pay univers togolais.":
+          "Acheter pour vous et pour vos proches en toute sécurité grâce Free Pay univers togolais.":
               'Buy for yourself and for your loved ones in complete safety with Free Pay Togolese universe.',
           "Possédez une carte virtuelle Free Pay fait de vous un citoyen de l'univers Togolais.":
               "Owning a Free Pay virtual card makes you a citizen of the Togolese universe.",

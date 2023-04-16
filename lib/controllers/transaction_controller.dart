@@ -90,7 +90,8 @@ class GlobalControllerNotify extends ChangeNotifier {
     filterCrop(value) {
     filteredTempCropList = companies
         .where((croplist) =>
-            croplist.name.toLowerCase().contains(value.toLowerCase()))
+             croplist.name.toLowerCase().contains(value.toLowerCase()) 
+            )
         .toList();
     notifyListeners();
   }

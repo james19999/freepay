@@ -28,19 +28,19 @@ class _PageviewPageState extends ConsumerState<PageviewPage> {
   List<dynamic> contents = [
     {
       "title":
-          "Acheter pour vous et pour vos proches en toute sécurité avec Free Pay univers togolais."
+          "Acheter pour vous et pour vos proches en toute sécurité grâce Free Pay univers togolais."
               .tr,
       "image": s1
     },
     {
       "title":
-          "Transféré de l'argent de votre carte Free Pay ver vos boutiques pour effectuer les achats."
+          "Effectuer des paiements ou achats depuis votre carte vers une boutique Free Pay."
               .tr,
       "image": s2
     },
     {
       "title":
-          "Possédez une carte virtuelle Free Pay fait de vous un citoyen de l'univers Togolais."
+          "Free Pay aide l'entreprise à fideliser ses client et à augmenter sont chiffres d'affaires."
               .tr,
       "image": s3
     },

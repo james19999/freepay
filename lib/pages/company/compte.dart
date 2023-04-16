@@ -46,7 +46,7 @@ class _CreateCompteState extends ConsumerState<CreateCompte> {
   final _search = StateProvider((ref) => false);
   final _searchtab = StateProvider((ref) => []);
   File? _image;
-
+ bool  conditions=false;
   final _picker = ImagePicker();
   Future<void> _openImagePicker() async {
     final XFile? pickedImage =
@@ -68,7 +68,7 @@ class _CreateCompteState extends ConsumerState<CreateCompte> {
       length: 3,
       child: Scaffold(
         backgroundColor: Colors.grey[200],
-        bottomSheet: Container(
+        bottomSheet: conditions==true? Container(
             height: Get.height * 0.11,
             width: Get.width,
             child: Padding(
@@ -146,7 +146,7 @@ class _CreateCompteState extends ConsumerState<CreateCompte> {
                               fontSize: fontsizes, color: Colors.white),
                         )),
               ),
-            )),
+            )):Text(""),
         appBar: AppBar(
           elevation: 0,
           centerTitle: true,
@@ -445,9 +445,27 @@ class _CreateCompteState extends ConsumerState<CreateCompte> {
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5.0))),
                         ),
+
+                        SizedBox(
+                          height: Get.height * 0.03,
+                        ),
+                        Row(
+                          children: [
+                            Checkbox(value: conditions, onChanged: (value) {
+                               setState(() {
+                                 conditions=value!;
+                               });
+                            },
+                             activeColor: AppColors.mainColor,
+                            ),
+
+                            Text("J'accepte les conditions générales d'utilisation.".tr,style: TextStyle(fontSize: 11.5),),
+                          ],
+                        )
                       ]),
                 ),
               ),
+              
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

@@ -11,3 +11,5 @@ const s2 = 'assets/images/s2.jpg';
 const s3 = 'assets/images/s3.jpg';
 
 const found = 'assets/images/found.png';
+const tg = 'assets/images/tg.png';
+const mv = 'assets/images/mv.png';

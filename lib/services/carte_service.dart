@@ -22,6 +22,7 @@ class Service {
       Cartes.status = result['Cartes']['status'];
       Cartes.amount = result['Cartes']['amount'];
       company = result['NameCompanye'];
+      companyphone = result['PhoneCompanye'];
       namecostumer = result['NameCostumer'];
       localstorage.setCarteCode(Cartes.code);
 

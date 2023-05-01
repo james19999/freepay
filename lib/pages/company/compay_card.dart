@@ -114,7 +114,13 @@ class CardCompany extends ConsumerWidget {
                                 color: AppColors.mainColor,
                               ),
                               SizedBox(width: Get.width * 0.03),
-                              Text(company.adress),
+                              Flexible(
+                                child: Text(company.adress,
+                                maxLines: 1,
+                                style: TextStyle(
+                                overflow: TextOverflow.ellipsis,
+                                fontSize: 13)),
+                              ),
                             ],
                           )
                         ],

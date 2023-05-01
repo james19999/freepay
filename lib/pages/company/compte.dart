@@ -317,7 +317,8 @@ class _CreateCompteState extends ConsumerState<CreateCompte> {
                         SizedBox(
                           height: Get.height * 0.02,
                         ),
-                        Text("Logo/Image de couverture".tr)
+                        Text("Logo/Image de couverture".tr),
+                        Text("Taille (1 Mo)".tr)
                       ]),
                 ),
               ),

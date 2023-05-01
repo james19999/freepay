@@ -1,8 +1,11 @@
+import 'package:digitalbank/helper/local_storage.dart';
 import 'package:digitalbank/pages/orboarding/orboarding.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 
-class Language extends StatelessWidget {
+class Language extends ConsumerWidget {
+   Language({super.key});
   final List locale = [
     {
       'name': 'ENGLISH',
@@ -16,8 +19,9 @@ class Language extends StatelessWidget {
     },
   ];
 
-  updateLanguage(Locale locale) {
+  updateLanguage(Locale locale)  async{
     Get.back();
+    
     Get.updateLocale(locale);
   }
 
@@ -44,8 +48,15 @@ class Language extends StatelessWidget {
                             height: 25,
                           ),
                           title: Text(locale[index]['name']),
-                          onTap: () {
-                            updateLanguage(locale[index]['locale']);
+                          onTap: () async {
+                             var locales =locale[index]['locale'];  
+                             await  localstorage.changemylangue(true);
+
+                             await localstorage.locallangue(locales.toString());
+                        
+                            //  updateLanguage(locales);
+                          
+                                    
                             Get.offAll(() => PageviewPage());
                           },
                         ));
@@ -57,7 +68,7 @@ class Language extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
         body: Center(
       child: Column(

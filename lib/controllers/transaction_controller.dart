@@ -95,6 +95,14 @@ class GlobalControllerNotify extends ChangeNotifier {
         .toList();
     notifyListeners();
   }
+
+  TmoneyApiCall () async {
+    
+  }
+  
+  FloozApiCall () async {
+
+  }
 }
 
 final GlobalProviders = ChangeNotifierProvider<GlobalControllerNotify>(

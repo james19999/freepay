@@ -67,7 +67,7 @@ class CompanyService {
         } else {
           Toas.getSnackbarEror(
             appName,
-             "Error",
+             "Error vérifiez la taille de votre image (1 mo)",
           );
         }
       }

@@ -1,4 +1,5 @@
 import 'package:digitalbank/helper/langue.dart';
+import 'package:digitalbank/helper/local_storage.dart';
 import 'package:digitalbank/pages/colors/color.dart';
 import 'package:digitalbank/pages/splash.dart';
 import 'package:flutter/material.dart';

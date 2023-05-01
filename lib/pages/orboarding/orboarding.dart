@@ -1,4 +1,5 @@
 import 'package:digitalbank/helper/images.dart';
+import 'package:digitalbank/helper/local_storage.dart';
 import 'package:digitalbank/pages/auth/login.dart';
 import 'package:digitalbank/pages/colors/color.dart';
 import 'package:digitalbank/pages/styles/style.dart';
@@ -140,6 +141,7 @@ class _PageviewPageState extends ConsumerState<PageviewPage> {
                     )),
               ),
             ),
+            
           ],
         ),
       ),

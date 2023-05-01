@@ -1,5 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:digitalbank/helper/images.dart';
+import 'package:digitalbank/helper/local_storage.dart';
 import 'package:digitalbank/pages/colors/color.dart';
 import 'package:digitalbank/pages/langue.dart';
 import 'package:digitalbank/pages/orboarding/orboarding.dart';
@@ -18,7 +19,8 @@ class Splash extends StatelessWidget {
         height: 500,
         width: 200,
       ),
-      nextScreen: Language(),
+      // localstorage.mylangues==true? PageviewPage() :
+      nextScreen:  Language(),
       splashTransition: SplashTransition.fadeTransition,
     );
   }

@@ -33,13 +33,29 @@ class UserCostumerController extends ChangeNotifier {
   LogoutUser() async {
     var url = Uri.parse("${BaseUrl}logout/user");
     final response = await http
-        .post(url, headers: {"Authorization": "Bearer ${localstorage.token}"});
+        .post(url,  headers: {"Authorization": "Bearer ${localstorage.token}"});
 
     if (response.statusCode == 200) {
       var result = json.decode(response.body);
       if (result['status'] == true) {
         localstorage.deletetoken;
         localstorage.deletename;
+        return true;
+      }
+    }
+  }
+  
+  UpadateIdentify(identify) async {
+    var url = Uri.parse("${BaseUrl}Update/Costumer/Idenfify");
+      var data = {
+      "identify": identify,
+    };
+    final response = await http
+        .post(url, body: data, headers: {"Authorization": "Bearer ${localstorage.token}"});
+
+    if (response.statusCode == 200) {
+      var result = json.decode(response.body);
+      if (result['status'] == true) {
         return true;
       }
     }

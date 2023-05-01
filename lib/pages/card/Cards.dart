@@ -8,9 +8,10 @@ import 'package:digitalbank/helper/responsive_helper.dart';
 import 'package:digitalbank/models/cart_data.dart';
 import 'package:digitalbank/models/transaction.dart';
 import 'package:digitalbank/pages/auth/login.dart';
+import 'package:digitalbank/pages/auth/upadate_identify.dart';
 import 'package:digitalbank/pages/card/detail.dart';
 import 'package:digitalbank/pages/colors/color.dart';
-import 'package:digitalbank/pages/company/company_list.dart';
+import 'package:digitalbank/pages/mobilemoney/payement_mode.dart';
 import 'package:digitalbank/pages/historiques/history.dart';
 import 'package:digitalbank/pages/splashlogout.dart';
 import 'package:digitalbank/pages/styles/style.dart';
@@ -72,10 +73,10 @@ class _CardsState extends ConsumerState<Cards> {
             actions: [
               // IconButton(
               //     onPressed: () {
-              //       Get.to(() => CompanyList(), transition: Transition.fade);
+              //       Get.to(() => PayementMode(), transition: Transition.fade);
               //     },
               //     icon: Icon(
-              //       Icons.remove_red_eye_sharp,
+              //       Icons.payment_outlined,
               //       color: Colors.white,
               //     ))
             ],
@@ -134,7 +135,7 @@ class _CardsState extends ConsumerState<Cards> {
                      ),
                     child: Icon(Icons.phone_android,color: Colors.white,)),
                   trailing: Text(
-                    "+228 92 21 25 30",
+                    companyphone,
                       style: StyleText.copyWith(fontSize: 14),
                        
                   ),
@@ -172,6 +173,42 @@ class _CardsState extends ConsumerState<Cards> {
                     child: Icon(Icons.history,color: Colors.white,)),
                   trailing: Text(
                     "Historique".tr,
+                   style: StyleText.copyWith(fontSize: 14),
+
+                  ),
+                ),
+                ListTile(
+                  onTap: () async {
+                     Get.to(() => PayementMode(), transition: Transition.fade);
+                  },
+                  leading: Container(
+                    height: Get.height *0.05,
+                     width: Get.width *0.1,
+                     decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: AppColors.mainColor,
+                     ),
+                    child: Icon(Icons.payment,color: Colors.white,)),
+                  trailing: Text(
+                    "Rechager".tr,
+                   style: StyleText.copyWith(fontSize: 14),
+
+                  ),
+                ),
+                ListTile(
+                  onTap: () async {
+                     Get.to(() => UpadateIdentifyCostumer(), transition: Transition.fade);
+                  },
+                  leading: Container(
+                    height: Get.height *0.05,
+                     width: Get.width *0.1,
+                     decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: AppColors.mainColor,
+                     ),
+                    child: Icon(Icons.verified_user,color: Colors.white,)),
+                  trailing: Text(
+                    "Identifiant".tr,
                    style: StyleText.copyWith(fontSize: 14),
 
                   ),
@@ -260,7 +297,7 @@ class _CardsState extends ConsumerState<Cards> {
                   onTap: () async {
                     Get.defaultDialog(
                         title: appName,
-                        middleText: 'Voulez-vous vraiment vous déconnectez'.tr,
+                        middleText: 'Voulez-vous vraiment vous déconnecter'.tr,
                         textCancel: "Non".tr,
                         textConfirm: "Oui".tr,
                         confirmTextColor: Colors.white,

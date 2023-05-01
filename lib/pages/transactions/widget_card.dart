@@ -66,7 +66,7 @@ class CardTransaction extends ConsumerWidget {
             trailing: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(DateConverter.estimatedDate(transaction.created)),
+                Text(DateConverter.formatDate(transaction.created)),
                 Text(
                   "${transaction.amount} XOF",
                   style: StyleText.copyWith(
